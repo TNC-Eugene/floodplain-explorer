@@ -1,0 +1,29 @@
+{
+	"visibleLayers": [],
+	"islLayer": [1],
+	"checkYearArray": [20],
+	"termSelected": "long",
+	"shoreLineID": 20,
+	"dataTypeButton": "changeRate",
+	"sliderYear": [20],
+	"islandText": "",
+	"dataObject": [],
+	"IslandName": "",
+	"initialExtent": {},
+	"zoomedIn": "no",
+	"extent": "",
+	"yearSliderMulti":"slider",
+	"trigger": "dropDown",
+	"sliderCounter": 0,
+
+
+	"futObid": -1,
+	"queryVis": "yes",
+	"activeAcIndex": 0,
+	"activeAc1Index": 0,
+	"curElOsp" : true,
+	"ImpactAd" : true,
+	"pinSelArray": [],
+	"pinHighlighted": -1,
+	"stateSet": "no"
+}
