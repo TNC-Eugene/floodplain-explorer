@@ -11,7 +11,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			$, content, ui, navigation, esriapi, clicks, stateCh ) {
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
-		toolbarName: "Coastline Change", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
+		toolbarName: "Upper Mississippi Floodplain", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
 		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], height:"600", width:"420",
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
@@ -19,8 +19,8 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			// Access framework parameters
 			declare.safeMixin(this, frameworkParameters);
 			// Set initial app size based on split screen state
-			this.con = dom.byId('plugins/coastline-change-0');
-			this.con1 = dom.byId('plugins/coastline-change-1');
+			this.con = dom.byId('plugins/umr-floodplain-0');
+			this.con1 = dom.byId('plugins/umr-floodplain-1');
 			if (this.con1 != undefined){
 				domStyle.set(this.con1, "width", "420px");
 				domStyle.set(this.con1, "height", "600px");
@@ -30,7 +30,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			}	
 			// Define object to access global variables from JSON object. Only add variables to varObject.json that are needed by Save and Share. 
 			this.obj = dojo.eval("[" + obj + "]")[0];	
-			this.url = "http://dev.services2.coastalresilience.org:6080/arcgis/rest/services/Virginia/coastline_change_historic/MapServer";
+			this.url = "http://cirrus-web-adapter-241060755.us-west-1.elb.amazonaws.com/arcgis/rest/services/FN_AGR/floodplain_umr/MapServer";
 			this.layerDefs = [];
 		},
 		// Called after initialize at plugin startup (why all the tests for undefined). Also called after deactivate when user closes app by clicking X. 
@@ -98,22 +98,11 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		},
 		// Called by activate and builds the plugins elements and functions
 		render: function() {
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			//this.map.setBasemap("dark-gray");
 			// BRING IN OTHER JS FILES
-			this.navigation = new navigation();
+			//this.navigation = new navigation();
 			this.esriapi = new esriapi();
 			this.clicks = new clicks();
-			this.stateCh = new stateCh();
+			//this.stateCh = new stateCh();
 			// ADD HTML TO APP
 			// Define Content Pane as HTML parent		
 			this.appDiv = new ContentPane({style:'padding:8px 8px 8px 8px'});
@@ -124,22 +113,9 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			$('#' + this.id).html(idUpdate);
 			// resize the container in the render function after the container is built.
 			this.resize1();
-			// CREATE ACCORDIANS
-			$('#' + this.id + 'dlAccord').accordion({ collapsible: true, active: 0, heightStyle: "content" });
-			$('#' + this.id + 'dlAccord1').accordion({ collapsible: true, active: 0, heightStyle: "content" });
-			//create slider bar
-			$('#' + this.id + 'multiShoreSlider').slider({ min: 0,	max: 13, value: 0, step: 1 });
-			$('#' + this.id + 'seaLevelSlider').slider({ min: 0, max: 2, value: 0, step: 1 });
-			$('#' + this.id + 'waveSlider').slider({ min: 0, max: 2, value: 0, step: 1 });
-			$('#' + this.id + 'nourSlider').slider({ min: 0, max: 3, value: 0, step: 1 });
-			
 			this.obj.initialExtent = this.map.extent;
-			
-			
 			// CALL NAVIGATION BUTTON EVENT LISTENERS 
-			this.navigation.navListeners(this);
-			//Call the function to populate the initial graph
-			this.esriapi.esriStartUp(this);
+			//this.navigation.navListeners(this);
 			// CREATE ESRI OBJECTS AND EVENT LISTENERS	
 			this.esriapi.esriApiFunctions(this);
 			// CREATE CHOSEN SELECT MENUS AND EVENT LISTENERS	

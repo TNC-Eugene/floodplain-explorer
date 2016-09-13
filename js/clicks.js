@@ -6,99 +6,53 @@ function ( Query, declare, FeatureLayer, lang, on, $, ui, esriapi ) {
 
         return declare(null, {
 			chosenListeners: function(t){
-				// Enable jquery plugin 'chosen'
-				require(["jquery", "plugins/coastline-change/js/chosen.jquery"],lang.hitch(this,function($) {
-					var configCrs =  { '.chosen-islands' : {allow_single_deselect:true, width:"186px", disable_search:true}}
+				require(["jquery", "plugins/umr-floodplain/js/chosen.jquery"],lang.hitch(t,function($) {
+					var configCrs =  { '.chosen-sym' : {allow_single_deselect:false, width:"224px", disable_search:true}}
 					for (var selector in configCrs)  { $(selector).chosen(configCrs[selector]); }
-				}));
-				// User selections on chosen menus 
-				require(["jquery", "plugins/coastline-change/js/chosen.jquery"],lang.hitch(t,function($) {	
-				t.esriapi = new esriapi();
-					//Select CRS 
-					$('#' + t.id + 'ch-ISL').chosen().change(lang.hitch(t,function(c, p){
-						
-						if(p){
-							if(p.selected != 'EasternShore'){
-								t.obj.islandText = c.target.value + " Island";
-								if(t.obj.termSelected == 'long'){
-									$('#' + t.id + 'chartTitle').text(t.obj.islandText + ' – Long Term Change')
-								}
-								if(t.obj.termSelected == 'short'){
-									$('#' + t.id + 'chartTitle').text(t.obj.islandText + ' – Short Term Change')
-								}
-								t.obj.islSelected = c.currentTarget.value
-								// create new query and and select features
-								var q = new Query();
-								q.where = "IslandName = '" + t.obj.islSelected + "'";
-								t.islFeat.selectFeatures(q,FeatureLayer.SELECTION_NEW);
-								if(t.obj.termSelected == "long" && t.obj.dataTypeButton == 'changeRate'){
-									t.obj.visibleLayers = [0,4,6]
-									t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
-								}
-								// check to see if in historical instead of change rate
-								if(t.obj.dataTypeButton == 'historical'){
-									t.obj.visibleLayers = [0];
-									$('#' + t.id + 'ch-yearCheck .multiYears').each(lang.hitch(t,function(i, v){
-										if(v.checked == true){
-											var val = v.value;
-											$.each(t.layersArray, lang.hitch(t,function(i,v){
-												var layerName = v.name;
-												if(layerName.split("_")[1] == val){
-													t.yearLayerID = v.id;
-													t.obj.visibleLayers.push(t.yearLayerID);
-													t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
-													t.obj.shorelineID = t.yearLayerID;
-												}
-											}));
-											t.obj.visibleLayers = []
-										}
-									}));
-									
-								}
-								t.obj.zoomedIn = "yes";
-							}else{
-								if(t.obj.termSelected == 'long'){
-									$('#' + t.id + 'chartTitle').text('Virginia Eastern Shore – Long Term Change')
-								}
-								if(t.obj.termSelected == 'short'){
-									$('#' + t.id + 'chartTitle').text('Virginia Eastern Shore – Short Term Change')
-								}
-								t.map.setExtent(t.obj.initialExtent, true);
-								t.obj.zoomedIn = "no";
-								t.esriapi.esriStartUp(t);
-							}
-							
-							
-							if(t.obj.trigger != 'mapClick'){
-								var query = new esri.tasks.Query();
-								query.where = "IslandName = '" + t.obj.islSelected + "'"
-								t.islandPolygons_click.selectFeatures(query,esri.layers.FeatureLayer.SELECTION_NEW);
-								t.obj.trigger = 'dropDown'
-							}else{
-								
-							}
-							
-							
-						}else{
-							if(t.obj.dataTypeButton == 'changeRate'){
-								if(t.obj.termSelected == "long"){
-									//$('#' + t.id + 'longBtn').trigger('click')
-									$('#' + t.id + 'chartTitle').text('Virginia Eastern Shore – Long Term Change')
-									t.obj.visibleLayers = [0,6]
-									t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
-								}
-								if(t.obj.termSelected == "short"){
-									//$('#' + t.id + 'shortBtn').trigger('click')
-									$('#' + t.id + 'chartTitle').text('Virginia Eastern Shore – Short Term Change')
-								}
-								t.esriapi.esriStartUp(t);
-							}
-							t.map.setExtent(t.obj.initialExtent, true);
-							t.obj.zoomedIn = "no"
-							
-						}
+					//Change listener for Symbolize By select
+					$('#' + t.id + 'ch-symbolize').chosen().change(lang.hitch(t,function(c, p){
+						console.log(c.currentTarget.value)
 					}));
 				}));
+				// Event listener for every navBtn class in main wrapper
+				$('#' + t.id + 'mainWrap .navBtn').on('click', lang.hitch(t,function(c){
+					// Does the selected button already have the navBtnSel class?
+					var navSel = 'no';
+					$.each(c.currentTarget.classList, lang.hitch(t,function(i, v){
+						if (v == 'navBtnSel'){
+							navSel = 'yes';
+						}	
+					}));	
+					// If it does, do nothing. Otherwise remove the class from it and it's siblings
+					if (navSel == 'no'){
+						// Go to parent of selected button, find all elements with class navBtn, and remove navBtnSel from each one
+						$.each($('#' + c.currentTarget.id).parent().find('.navBtn'), lang.hitch(t,function(i, x){
+							$('#' + x.id).removeClass('navBtnSel');
+						}))
+						// Add navBtnSel class to selected button
+						$('#' + c.currentTarget.id).addClass('navBtnSel');
+						// Remove everything to the left of the first "-" in the selected buttons id  
+						var lngid = c.currentTarget.id.split("-").pop()
+						var nm = lngid.split('_').join(' ');
+						// Add conditional logic based on id of parent div
+						if ($('#' + c.currentTarget.id).parent().prop('id') == t.id + "hucWrap"){
+							t.obj.vhuc = nm;
+						}
+						if ($('#' + c.currentTarget.id).parent().prop('id') == t.id + "yearWrap"){
+							t.obj.vyear = nm;
+						}
+						// The layer name from the map service
+						var lyrName = t.obj.vyear + ' - ' + t.obj.vhuc + ' - ' + t.obj.vsym						
+						// Loop through map service layer infos. If lyrName matches map service layer name, turn it on. 
+						$.each(t.layersArray, lang.hitch(t,function(i,v){
+							if (v.name == lyrName){
+								t.obj.visibleLayers = [v.id];
+								t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
+							}	
+						}));
+					}
+				}));
+								
 			},
         });
     }

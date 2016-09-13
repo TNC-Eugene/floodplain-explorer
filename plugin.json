@@ -1,10 +1,10 @@
 {
     "css": [
 		"//cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css",
-        "plugins/coastline-change/js/jquery-ui-1.11.2/jquery-ui.css",
-		"plugins/coastline-change/css/prism.css",
-		"plugins/coastline-change/css/chosen.css",
-		"plugins/coastline-change/css/main.css"
+        "plugins/umr-floodplain/js/jquery-ui-1.11.2/jquery-ui.css",
+		"plugins/umr-floodplain/css/prism.css",
+		"plugins/umr-floodplain/css/chosen.css",
+		"plugins/umr-floodplain/css/main.css"
     ],
     "use": {
         "underscore": { "attach": "_" },

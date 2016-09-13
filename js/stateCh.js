@@ -14,7 +14,7 @@ function ( declare, lang, on, $ ) {
 						$('#' + t.id + t.obj.section).trigger('click');
 						// was a community selected?
 						if ( t.obj.crsSelected != "" ){
-							require(["jquery", "plugins/coastline-change/js/chosen.jquery"],lang.hitch(t,function($) {
+							require(["jquery", "plugins/umr-floodplain/js/chosen.jquery"],lang.hitch(t,function($) {
 								var p = "r"
 								$('#' + t.id + 'ch-CRS').val(t.obj.crsSelected).trigger('chosen:updated').trigger('change', p)	
 							}));
