@@ -12,7 +12,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "Upper Mississippi Floodplain", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
-		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], height:"600", width:"420",
+		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], height:"300", width:"390",
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
 			
@@ -22,11 +22,11 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			this.con = dom.byId('plugins/umr-floodplain-0');
 			this.con1 = dom.byId('plugins/umr-floodplain-1');
 			if (this.con1 != undefined){
-				domStyle.set(this.con1, "width", "420px");
-				domStyle.set(this.con1, "height", "600px");
+				domStyle.set(this.con1, "width", "390px");
+				domStyle.set(this.con1, "height", "300px");
 			}else{
-				domStyle.set(this.con, "width", "420px");
-				domStyle.set(this.con, "height", "600px");
+				domStyle.set(this.con, "width", "390px");
+				domStyle.set(this.con, "height", "300px");
 			}	
 			// Define object to access global variables from JSON object. Only add variables to varObject.json that are needed by Save and Share. 
 			this.obj = dojo.eval("[" + obj + "]")[0];	
@@ -90,10 +90,12 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		},	
 		// Resizes the plugin after a manual or programmatic plugin resize so the button pane on the bottom stays on the bottom.
 		// Tweak the numbers subtracted in the if and else statements to alter the size if it's not looking good.
-		resize1: function(w, h) {
+		resize: function(w, h) {
 			cdg = domGeom.position(this.container);
-			if (cdg.h == 0) { this.sph = this.height - 80; }
-			else { this.sph = cdg.h - 62; }
+			if (cdg.h == 0) { this.sph = this.height ; }
+			else { this.sph = cdg.h ; }
+			//if (cdg.h == 0) { this.sph = this.height - 80; }
+			//else { this.sph = cdg.h - 62; }
 			domStyle.set(this.appDiv.domNode, "height", this.sph + "px"); 
 		},
 		// Called by activate and builds the plugins elements and functions
@@ -112,7 +114,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			var idUpdate = content.replace(/id='/g, "id='" + this.id);	
 			$('#' + this.id).html(idUpdate);
 			// resize the container in the render function after the container is built.
-			this.resize1();
+			this.resize();
 			this.obj.initialExtent = this.map.extent;
 			// CALL NAVIGATION BUTTON EVENT LISTENERS 
 			//this.navigation.navListeners(this);

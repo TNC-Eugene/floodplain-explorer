@@ -11,7 +11,16 @@ function ( Query, declare, FeatureLayer, lang, on, $, ui, esriapi ) {
 					for (var selector in configCrs)  { $(selector).chosen(configCrs[selector]); }
 					//Change listener for Symbolize By select
 					$('#' + t.id + 'ch-symbolize').chosen().change(lang.hitch(t,function(c, p){
-						console.log(c.currentTarget.value)
+						t.obj.vsym = c.currentTarget.value;
+						// The layer name from the map service
+						var lyrName = t.obj.vyear + ' - ' + t.obj.vhuc + ' - ' + t.obj.vsym;						
+						// Loop through map service layer infos. If lyrName matches map service layer name, turn it on. 
+						$.each(t.layersArray, lang.hitch(t,function(i,v){
+							if (v.name == lyrName){
+								t.obj.visibleLayers = [v.id];
+								t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
+							}	
+						}));
 					}));
 				}));
 				// Event listener for every navBtn class in main wrapper

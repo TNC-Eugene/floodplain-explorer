@@ -17,6 +17,7 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 						t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 					}
 					t.layersArray = t.dynamicLayer.layerInfos;
+					t.map.setExtent(t.dynamicLayer.initialExtent, true); 
 				}));
 			}
 		});
