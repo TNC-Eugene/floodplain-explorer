@@ -5,14 +5,14 @@ require({
 // Bring in dojo and javascript api classes as well as varObject.json, js files, and content.html
 define([
 	"dojo/_base/declare", "framework/PluginBase", "dijit/layout/ContentPane", "dojo/dom", "dojo/dom-style", "dojo/dom-geometry", "dojo/_base/lang", "dojo/text!./obj.json", 
-	"jquery", "dojo/text!./html/content.html", './js/jquery-ui-1.11.2/jquery-ui', './js/navigation', './js/esriapi', './js/clicks', './js/stateCh'
+	"jquery", "dojo/text!./html/content.html", './js/jquery-ui-1.11.2/jquery-ui', './js/esriapi', './js/clicks'
 ],
 function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj, 
-			$, content, ui, navigation, esriapi, clicks, stateCh ) {
+			$, content, ui, esriapi, clicks ) {
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "Upper Mississippi Floodplain", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
-		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], height:"300", width:"390",
+		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], height:"440", width:"390",
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
 			
@@ -23,10 +23,10 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			this.con1 = dom.byId('plugins/umr-floodplain-1');
 			if (this.con1 != undefined){
 				domStyle.set(this.con1, "width", "390px");
-				domStyle.set(this.con1, "height", "300px");
+				domStyle.set(this.con1, "height", "440px");
 			}else{
 				domStyle.set(this.con, "width", "390px");
-				domStyle.set(this.con, "height", "300px");
+				domStyle.set(this.con, "height", "440px");
 			}	
 			// Define object to access global variables from JSON object. Only add variables to varObject.json that are needed by Save and Share. 
 			this.obj = dojo.eval("[" + obj + "]")[0];	
@@ -78,11 +78,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		//It's overwrites the default JSON definfed in initialize with the saved stae JSON.
 		setState: function (state) {
 			this.obj = state;
-			this.pinSelArray = this.obj.pinSelArray;
-			this.searchedPin = this.obj.searchedPin;
-			this.futObid = this.obj.futObid;
-			this.queryVis = this.obj.queryVis;
-			this.stateSet = this.obj.stateSet;
 		},
 		// Called when the user hits the print icon
 		beforePrint: function(printDeferred, $printArea, mapObject) {
@@ -101,10 +96,8 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		// Called by activate and builds the plugins elements and functions
 		render: function() {
 			// BRING IN OTHER JS FILES
-			//this.navigation = new navigation();
 			this.esriapi = new esriapi();
 			this.clicks = new clicks();
-			//this.stateCh = new stateCh();
 			// ADD HTML TO APP
 			// Define Content Pane as HTML parent		
 			this.appDiv = new ContentPane({style:'padding:8px 8px 8px 8px'});
@@ -115,19 +108,11 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			$('#' + this.id).html(idUpdate);
 			// resize the container in the render function after the container is built.
 			this.resize();
-			this.obj.initialExtent = this.map.extent;
-			// CALL NAVIGATION BUTTON EVENT LISTENERS 
-			//this.navigation.navListeners(this);
 			// CREATE ESRI OBJECTS AND EVENT LISTENERS	
 			this.esriapi.esriApiFunctions(this);
+			this.esriapi.updateFeatureLayer(this);
 			// CREATE CHOSEN SELECT MENUS AND EVENT LISTENERS	
 			this.clicks.chosenListeners(this);				
-			// EVENT LISTENER FOR MAP PREVIEW AND DOWNLOAD
-			//this.clicks.mapPreviewDownload(this);	
-			// EXPAND AND COLLAPSE INFO IN ELEMENTS SUMMARY
-			//this.clicks.toggleInfoSum(this);
-			// UPDATE STATE IF SET STATE WAS CALLED
-			//this.stateCh.checkState(this);
 			
 			this.rendered = true;	
 		},

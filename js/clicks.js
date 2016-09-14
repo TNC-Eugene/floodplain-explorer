@@ -11,6 +11,7 @@ function ( Query, declare, FeatureLayer, lang, on, $, ui, esriapi ) {
 					for (var selector in configCrs)  { $(selector).chosen(configCrs[selector]); }
 					//Change listener for Symbolize By select
 					$('#' + t.id + 'ch-symbolize').chosen().change(lang.hitch(t,function(c, p){
+						t.fpFL.clear();
 						t.obj.vsym = c.currentTarget.value;
 						// The layer name from the map service
 						var lyrName = t.obj.vyear + ' - ' + t.obj.vhuc + ' - ' + t.obj.vsym;						
@@ -18,6 +19,8 @@ function ( Query, declare, FeatureLayer, lang, on, $, ui, esriapi ) {
 						$.each(t.layersArray, lang.hitch(t,function(i,v){
 							if (v.name == lyrName){
 								t.obj.visibleLayers = [v.id];
+								t.obj.flid = v.id
+								t.esriapi.updateFeatureLayer(t);
 								t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 							}	
 						}));
@@ -25,6 +28,7 @@ function ( Query, declare, FeatureLayer, lang, on, $, ui, esriapi ) {
 				}));
 				// Event listener for every navBtn class in main wrapper
 				$('#' + t.id + 'mainWrap .navBtn').on('click', lang.hitch(t,function(c){
+					t.fpFL.clear();
 					// Does the selected button already have the navBtnSel class?
 					var navSel = 'no';
 					$.each(c.currentTarget.classList, lang.hitch(t,function(i, v){
@@ -56,6 +60,8 @@ function ( Query, declare, FeatureLayer, lang, on, $, ui, esriapi ) {
 						$.each(t.layersArray, lang.hitch(t,function(i,v){
 							if (v.name == lyrName){
 								t.obj.visibleLayers = [v.id];
+								t.obj.flid = v.id
+								t.esriapi.updateFeatureLayer(t);
 								t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 							}	
 						}));
