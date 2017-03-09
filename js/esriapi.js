@@ -1,56 +1,39 @@
 define([
-	"esri/layers/ArcGISDynamicMapServiceLayer", "esri/geometry/Extent", "esri/SpatialReference", "esri/tasks/query","esri/tasks/QueryTask", "dojo/_base/declare", "esri/layers/FeatureLayer", 
-	"esri/symbols/SimpleLineSymbol", "esri/symbols/SimpleFillSymbol", "esri/graphic", "dojo/_base/Color", "dojo/_base/lang", "dojo/on", "jquery", './jquery-ui-1.11.2/jquery-ui'
+	"esri/layers/ArcGISDynamicMapServiceLayer", "esri/geometry/Extent", "esri/SpatialReference", "esri/tasks/query" ,"esri/tasks/QueryTask", "dojo/_base/declare", "esri/layers/FeatureLayer", 
+	"esri/symbols/SimpleLineSymbol", "esri/symbols/SimpleFillSymbol","esri/symbols/SimpleMarkerSymbol", "esri/graphic", "dojo/_base/Color"
 ],
 function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, QueryTask, declare, FeatureLayer, 
-			SimpleLineSymbol, SimpleFillSymbol, Graphic, Color, lang, on, $, ui) {
+			SimpleLineSymbol, SimpleFillSymbol, SimpleMarkerSymbol, Graphic, Color ) {
         "use strict";
 
         return declare(null, {
-			esriApiFunctions: function(t){
-								
+			esriApiFunctions: function(t){	
+				// zoom to tracker
+				t.zoomTo = 'no'
 				// Add dynamic map service
-				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url);
+				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.8});
 				t.map.addLayer(t.dynamicLayer);
-				t.dynamicLayer.on("load", lang.hitch(t, function () { 			
-					if (t.obj.visibleLayers.length > 0){	
-						t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
-					}
+				if (t.obj.visibleLayers.length > 0){	
+					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
+				}
+				t.dynamicLayer.on("load", function () { 			
 					t.layersArray = t.dynamicLayer.layerInfos;
-					t.map.setExtent(t.dynamicLayer.initialExtent, true); 
-				}));
-			},
-			updateFeatureLayer: function(t){
-				t.map.on("mouse-over", lang.hitch(t, function(event) {
-					t.map.setMapCursor("pointer");
-				}));
-				var selSymbol = new SimpleFillSymbol( SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(
-					SimpleLineSymbol.STYLE_SOLID, new Color([0,0,255]), 1.5 ), new Color([0,0,0,0])
-				);
-				t.fpFL = new FeatureLayer(t.url + "/" + t.obj.flid, { mode: FeatureLayer.MODE_SELECTION, outFields: ["*"] });
-				t.fpFL.setSelectionSymbol(selSymbol);
-				t.fpFL.on('selection-complete', lang.hitch(t,function(f){
-					if (f.features.length > 0){
-						var att = f.features[0].attributes;
-						$('#' + t.appDiv.id + 'attWrap .attValues').each(lang.hitch(t,function(i,v){
-							var field = v.id.split("-").pop()
-							var val = att[field];
-							if ( isNaN(att[field]) == false ){
-								val = Math.round(val);
-								val = t.esriapi.commaSeparateNumber(val);	
-							}	
-							$('#' + v.id).html(val);
-							$('#' + t.appDiv.id + 'attWrap').slideDown();
-						}));
+					
+					// Save and Share Handler					
+					if (t.obj.stateSet == "yes"){
+						//extent
+						var extent = new Extent(t.obj.extent.xmin, t.obj.extent.ymin, t.obj.extent.xmax, t.obj.extent.ymax, new SpatialReference({ wkid:4326 }))
+						t.map.setExtent(extent, true);
+						// accordion visibility
+						$('#' + t.id + t.obj.accordVisible).show();
+						$('#' + t.id + t.obj.accordHidden).hide();
+						$('#' + t.id + 'getHelpBtn').html(t.obj.buttonText);
+						//t.clicks.updateAccord(t);
+						$('#' + t.id + t.obj.accordVisible).accordion( "option", "active", t.obj.accordActive );	
+						t.obj.stateSet = "no";
 					}	
-				}));
-				t.map.addLayer(t.fpFL);
-				t.map.on("click", lang.hitch(t, function(event) {
-					var pnt = event.mapPoint;
-					var q = new Query();
-					q.geometry = pnt;
-					t.fpFL.selectFeatures(q,esri.layers.FeatureLayer.SELECTION_NEW);
-				}));	
+					t.map.setMapCursor("pointer");
+				});					
 			},
 			commaSeparateNumber: function(val){
 				while (/(\d+)(\d{3})/.test(val.toString())){

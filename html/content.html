@@ -1,63 +1,183 @@
-﻿<!--This HTML is used in the render function to build the elements within the plugin. The render function first creats a 
-Dijit ContentPane to hold all the elements. The ContentPane is assigned a dynamic id upon creation. The render function 
-takes the ContentPane id and prepends it to every element with a declared id in this HTML before the elements are created. 
-The unique ContentPane id makes all the element ids unique and prevents duplicate id errors in split screen mode.-->
+﻿<!--This HTML is used in the render function to build the elements within the plugin. The render function first creates a
+Dijit ContentPane to hold all the elements. The ContentPane is assigned a dynamic id upon creation. The render function
+takes the ContentPane id and prepends it to every element with a declared id in this HTML before the elements are created.
+The unique ContentPane id makes all the element ids unique and prevents duplicate id errors across other apps.-->
 
-<!-- The id on this div is used for teh event lsitener on all navBtn classes -->
-<div id='mainWrap'>	
-	<!-- The id on this div is used in conditional statements to determine which group the a selected navBtn belongs --> 
-	<div class='navWrapperL' id='yearWrap'>
-		<div class='navHeader'>1. Select Event:</div>
-		<!-- All divs with navBtn class have an id that begins with "btn-". The rest of the id will match part of the
-		name of a layer in the map service with underscores instead of spaces. The underscores will be replaced by 
-		spaces on the javasript side-->
-		<div class='navBtn bbarL' id='btn-5_Year'>1 in 5 Year</div>
-		<div class='navBtn bbarR navBtnSel' id='btn-100_Year'>1 in 100 Year</div>
-	</div>
-	<!-- The id on this div is used in conditional statements to determine which group the a selected navBtn belongs -->
-	<div class='navWrapperL' id='hucWrap'>
-		<div class='navHeader'>2. View floodplains by watershed:</div>
-		<div class='navBtn bbarL navBtnSel' id='btn-HUC_8'>HUC 8</div>
-		<div class='navBtn bbarR' id='btn-HUC_10'>HUC 10</div>
-		<div class='navBtn bbarR' id='btn-HUC_12'>HUC 12</div>
-	</div>
-	<div class='navWrapperL'>
-		<div class='navHeader'>3. Symbolize floodplains by:</div>
-		<div class='selectWrapper'>
-			<select id='ch-symbolize' data-placeholder="Choose an Attribute" class="chosen-sym" tabindex="16">
-				<option value=""></option>
-				<option value="Mean Flood Depth" selected>Mean Flood Depth</option>
-				<option value="Sum Agriculture Loss">Sum Agriculture Loss</option>
-				<option value="Depreciated total structure loss">Depreciated Total Structure Loss</option>
-			</select>		
+<div id="getHelpBtnWrap" class="getHelpBtnWrap hide">
+	<button id="getHelpBtn" class="button button-default">Start Using Sample App</button>
+</div>
+<div id="mainAccord" class="flex1 umr-wrap" style="padding:0.5em; color: #5d6165;">
+	<section class="umr-first-section">
+		<h3>Identify Floodplain Units</h3>
+		<h4>Select Flood Frequency</h4>
+		<div class="toggle-btn" style="width:210px;">
+			<input type="radio" id="ff-1" name="ff" value="1" checked/>
+			<label for="ff-1">1% (100 year)</label>
+			<input type="radio" id="ff-20" name="ff" value="20"/>
+			<label for="ff-20">20% (5 year)</label>
+		</div>	
+		<h4>View Floodplains By Watershed</span>:</h4>
+		<div class="toggle-btn" style="width:210px;">
+			<input type="radio" id="huc-10" name="hucs" value="huc-10" checked/>
+			<label for="huc-10">HUC-10</label>
+			<input type="radio" id="huc-12" name="hucs" value="huc-12"/>
+			<label for="huc-12">HUC-12</label>
 		</div>
-	</div>
-	<hr class='hrStyle hide'>
-	<div class='navWrapperL'>
-		<div class='navHeaderWide'>4. Click a floodplain unit for detailed information. </div><br><br>
-		<div id='attWrap' class='hide'>
-			<div class='navHeaderD'>Floodplain Unit HUC Name: <span class='attValues bld' id='att-NAME'></span></div>
-			<div class='navHeaderD'>Mean Flood Depth: <span class='attValues bld' id='att-MEAN_FloodDepth'></span><span class='bld'> m</span></div>
-			<div class='navHeaderD'>Sum Agriculture Loss: <span class='bld'>$</span><span class='attValues bld' id='att-SUM_AG_Loss'></span></div>
-			<div class='navHeaderD'>Sum Depreciated Total Structure Loss: <span class='bld'>$</span><span class='attValues bld' id='att-SUM_DepreciatedLoss'></span></div>
-			<div class='navHeaderD'>Sum Full Replacement Total Structure Loss: <span class='bld'>$</span><span class='attValues bld' id='att-SUM_FullReplaceLoss'></span></div>
-			<div class='navHeaderD'>Count of Target Bird Species: <span class='attValues bld' id='att-SUM_Species_Count'></span></div>
+		<h4>Select Management Action</h4>
+		<div id="mact-btns" class="toggle-btn" style="width:306px;">
+			<input type="radio" id="mact-1" name="mact" value="cons"/>
+			<label for="mact-1">Conservation</label>
+			<input type="radio" id="mact-2" name="mact" value="restor"/>
+			<label for="mact-2">Restoration</label>
+			<input type="radio" id="mact-3" name="mact" value="recon"/>
+			<label for="mact-3">Reconnection</label>
 		</div>
-	</div>	
+
+		<!-- <label class="form-component" for="mng-act-c">
+			<input type="radio" id="mng-act-c" name="mng-act" value="cons">
+			<div class="check"></div><span class="form-text">Conservation of existing natural lands</span>
+		</label>
+		<label class="form-component" for="mng-act-rs">
+			<input type="radio" id="mng-act-rs" name="mng-act" value="restor">
+			<div class="check"></div><span class="form-text">Restoration of agricultural lands at risk from flooding</span>
+		</label>
+		<label class="form-component" for="mng-act-rc">
+			<input type="radio" id="mng-act-rc" name="mng-act" value="recon">
+			<div class="check"></div><span class="form-text">Reconnection of lands disconnected by levees</span>
+		</label> -->
+	</section>
+	<section class="hide mng-act-wrap">
+		<div class="cons mng-act-toggle">
+			<h3>Conservation of existing natural lands</h3>
+			<h4>Land Use Characteristics</h4>
+			<p><span class="under">Natural land not behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">100</span> acres</p>
+			<div class="slider-container range-slider" style="width:200px;">
+				<div id="-NatNotProt" class="slider"></div>
+			</div> 
+		</div>
+		<div class="restor mng-act-toggle">
+			<h3>Restoration of agricultural lands at risk from flooding</h3>
+			<h4>Land Use Characteristics</h4>
+			<p><span class="under">Agricultural land not behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">100</span> acres</p>
+			<div class="slider-container range-slider" style="width:200px;">
+				<div id="-AGNotProt" class="slider"></div>
+			</div>
+		</div>
+		<div class="recon mng-act-toggle">
+			<h3>Reconnection of lands disconnected by levees</h3>
+			<h4>Land Use Characteristics</h4>
+			<p><span class="under">Agricultural land use behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">100</span> acres</p>
+			<div class="slider-container range-slider" style="width:200px;">
+				<div id="-AGProt" class="slider"></div>
+			</div>
+			<p><span class="under">Developed land behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">100</span> acres</p>
+			<div class="slider-container range-slider" style="width:200px;">
+				<div id="-DevProt" class="slider"></div>
+			</div>
+		</div>
+		<div class="cons restor recon mng-act-toggle">
+			<h4>Water Quality Benefits</h4>
+			<p class="under">Upland nutrient retention</p>
+			<label class="form-component" for="unr-h">
+				<input checked type="radio" id="unr-h" name="unr" value="NDelRet-High">
+				<div class="check"></div><span class="form-text">High</span>
+			</label>
+			<label class="form-component" for="unr-m">
+				<input type="radio" id="unr-m" name="unr" value="NDelRet-Medium">
+				<div class="check"></div><span class="form-text">Medium</span>
+			</label>
+			<label class="form-component" for="unr-l">
+				<input type="radio" id="unr-l" name="unr" value="NDelRet-Low">
+				<div class="check"></div><span class="form-text">Low</span>
+			</label>
+			<p class="under">Denitrification Potential</p>
+			<label class="form-component" for="dn-waa">
+				<input checked type="radio" id="dn-waa" name="dn" value="Denitrification-waa">
+				<div class="check"></div><span class="form-text">Well above average</span>
+			</label>
+			<label class="form-component" for="dn-aa">
+				<input type="radio" id="dn-aa" name="dn" value="Denitrification-aa">
+				<div class="check"></div><span class="form-text">Above average</span>
+			</label>
+			<h4>Flood Related Benefits</h4>
+		</div>		
+		<div class="recon mng-act-toggle">
+			<p class="under">Reconnection Potential</p>
+			<label class="form-component" for="rp-h">
+				<input checked type="radio" id="rp-h" name="rp" value="Reconnection-High">
+				<div class="check"></div><span class="form-text">High</span>
+			</label>
+			<label class="form-component" for="rp-m">
+				<input type="radio" id="rp-m" name="rp" value="Reconnection-Medium">
+				<div class="check"></div><span class="form-text">Medium</span>
+			</label>
+			<label class="form-component" for="unr-l">
+				<input type="radio" id="rp-l" name="rp" value="Reconnection-Low">
+				<div class="check"></div><span class="form-text">Low</span>
+			</label>
+		</div>	
+		<div class="cons restor recon mng-act-toggle">
+			<p><span class="under">Structural Losses</span>: $<span class="blueFont">0</span> to $<span class="blueFont">100</span></p>
+			<div class="slider-container range-slider" style="width:200px;">
+				<div id="-FRStruct_TotLoss" class="slider"></div>
+			</div>
+			<p><span class="under">Agricultural Losses</span>: $<span class="blueFont">0</span> to $<span class="blueFont">100</span></p>
+			<div class="slider-container range-slider" style="width:200px;">
+				<div id="-AGLoss_7" class="slider"></div>
+			</div>
+			<h4>Habitat and Biodiversity Benefits</h4>
+		</div>	
+		<div class="cons mng-act-toggle">
+			<p class="under">Existing floodplain forest area</p>
+			<label class="form-component" for="ffa-h">
+				<input checked type="radio" id="ffa-h" name="ffa" value="BF_Existing-High">
+				<div class="check"></div><span class="form-text">High</span>
+			</label>
+			<label class="form-component" for="ffa-m">
+				<input type="radio" id="ffa-m" name="ffa" value="BF_Existing-Medium">
+				<div class="check"></div><span class="form-text">Medium</span>
+			</label>
+			<label class="form-component" for="ffa-l">
+				<input type="radio" id="ffa-l" name="ffa" value="BF_Existing-Low">
+				<div class="check"></div><span class="form-text">Low</span>
+			</label>
+		</div>
+		<div class="restor recon mng-act-toggle">
+			<p class="under">Floodplain forest restoration priority</p>
+			<label class="form-component" for="frp-h">
+				<input checked type="radio" id="frp-h" name="frp" value="BF_Priority-High">
+				<div class="check"></div><span class="form-text">High</span>
+			</label>
+			<label class="form-component" for="frp-m">
+				<input type="radio" id="frp-m" name="frp" value="BF_Priority-Medium">
+				<div class="check"></div><span class="form-text">Medium</span>
+			</label>
+		</div>
+		<div class="cons restor recon mng-act-toggle">
+			<p class="under">Bird Priority Area</p>
+			<label class="form-component" for="bpa-y">
+				<input type="radio" id="bpa-y" name="bpa" value="SDM-y">
+				<div class="check"></div><span class="form-text">Yes</span>
+			</label>
+			<label class="form-component" for="bpa-n">
+				<input checked type="radio" id="bpa-n" name="bpa" value="SDM-n">
+				<div class="check"></div><span class="form-text">No</span>
+			</label>
+		</div>			
+	</section>	
 </div>
 
-
-<!--Bottom bar with slider and print/csv buttons
-<div id='bottomDiv' class='bottomDiv'>
-	<div id='sliderDiv' class='sliderDiv'>
-		<div class='leftSliderLabel'>
-			Opaque
-		</div>
-		<div id='slider' class='slider'>
-		</div>
-		<div class='rightSliderLabel'>
-			Transparent
-		</div>
+<!-- <div id="infoAccord" class="flex1">
+	<h3 class="infoDoc">Documentation</h3>
+	<div class="explainWrap" style="display:block;">
+		<p>
+			This is a new app. It's going to be awesome. It just is.
+		</p> 
+	</div> 
+	<h3 class="moreInfo">More info</h3>
+	<div class="explainWrap">
+		<p>
+			More info to come.
+		</p>
 	</div>
-</div>	
--->
+</div> -->

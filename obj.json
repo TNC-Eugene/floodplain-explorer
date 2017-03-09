@@ -1,7 +1,9 @@
 {
 	"visibleLayers": [2],
-	"vyear": "100 Year",
-	"vhuc": "HUC 8",
-	"vsym": "Mean Flood Depth",
-	"flid": "2"
+	"accordVisible": "",
+	"accordHidden": "",
+	"accordActive": 0,
+	"buttonText": "",
+	"extent": "",
+	"stateSet": "no"
 }

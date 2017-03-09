@@ -1,74 +1,119 @@
 define([
-	"esri/tasks/query", "dojo/_base/declare", "esri/layers/FeatureLayer", "dojo/_base/lang", "dojo/on", "jquery", './jquery-ui-1.11.2/jquery-ui', './esriapi'
+	"dojo/_base/declare"
 ],
-function ( Query, declare, FeatureLayer, lang, on, $, ui, esriapi ) {
+function ( declare ) {
         "use strict";
 
         return declare(null, {
-			chosenListeners: function(t){
-				require(["jquery", "plugins/umr-floodplain/js/chosen.jquery"],lang.hitch(t,function($) {
-					var configCrs =  { '.chosen-sym' : {allow_single_deselect:false, width:"224px", disable_search:true}}
-					for (var selector in configCrs)  { $(selector).chosen(configCrs[selector]); }
-					//Change listener for Symbolize By select
-					$('#' + t.id + 'ch-symbolize').chosen().change(lang.hitch(t,function(c, p){
-						t.fpFL.clear();
-						t.obj.vsym = c.currentTarget.value;
-						// The layer name from the map service
-						var lyrName = t.obj.vyear + ' - ' + t.obj.vhuc + ' - ' + t.obj.vsym;						
-						// Loop through map service layer infos. If lyrName matches map service layer name, turn it on. 
-						$.each(t.layersArray, lang.hitch(t,function(i,v){
-							if (v.name == lyrName){
-								t.obj.visibleLayers = [v.id];
-								t.obj.flid = v.id
-								t.esriapi.updateFeatureLayer(t);
-								t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
-							}	
-						}));
-					}));
-				}));
-				// Event listener for every navBtn class in main wrapper
-				$('#' + t.id + 'mainWrap .navBtn').on('click', lang.hitch(t,function(c){
-					t.fpFL.clear();
-					// Does the selected button already have the navBtnSel class?
-					var navSel = 'no';
-					$.each(c.currentTarget.classList, lang.hitch(t,function(i, v){
-						if (v == 'navBtnSel'){
-							navSel = 'yes';
-						}	
-					}));	
-					// If it does, do nothing. Otherwise remove the class from it and it's siblings
-					if (navSel == 'no'){
-						// Go to parent of selected button, find all elements with class navBtn, and remove navBtnSel from each one
-						$.each($('#' + c.currentTarget.id).parent().find('.navBtn'), lang.hitch(t,function(i, x){
-							$('#' + x.id).removeClass('navBtnSel');
-						}))
-						// Add navBtnSel class to selected button
-						$('#' + c.currentTarget.id).addClass('navBtnSel');
-						// Remove everything to the left of the first "-" in the selected buttons id  
-						var lngid = c.currentTarget.id.split("-").pop()
-						var nm = lngid.split('_').join(' ');
-						// Add conditional logic based on id of parent div
-						if ($('#' + c.currentTarget.id).parent().prop('id') == t.id + "hucWrap"){
-							t.obj.vhuc = nm;
-						}
-						if ($('#' + c.currentTarget.id).parent().prop('id') == t.id + "yearWrap"){
-							t.obj.vyear = nm;
-						}
-						// The layer name from the map service
-						var lyrName = t.obj.vyear + ' - ' + t.obj.vhuc + ' - ' + t.obj.vsym						
-						// Loop through map service layer infos. If lyrName matches map service layer name, turn it on. 
-						$.each(t.layersArray, lang.hitch(t,function(i,v){
-							if (v.name == lyrName){
-								t.obj.visibleLayers = [v.id];
-								t.obj.flid = v.id
-								t.esriapi.updateFeatureLayer(t);
-								t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
-							}	
-						}));
-					}
-				}));
-								
+			appSetup: function(t){
+				//make accrodians
+				$( function() {
+					$( "#" + t.id + "mainAccord" ).accordion({heightStyle: "fill"});
+					$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});
+					$( '#' + t.id + 'mainAccord > h3' ).addClass("accord-header"); 
+					$( '#' + t.id + 'infoAccord > div' ).addClass("accord-body");
+					$( '#' + t.id + 'infoAccord > h3' ).addClass("accord-header"); 
+					$( '#' + t.id + 'mainAccord > div' ).addClass("accord-body");
+				});
+				// update accordians on window resize
+				var doit;
+				$(window).resize(function(){
+					clearTimeout(doit);
+					doit = setTimeout(function() {
+						t.clicks.updateAccord(t);
+					}, 100);
+				});	
+				// leave the get help section
+				$('#' + t.id + 'getHelpBtn').on('click',function(c){		
+					if ( $('#' + t.id + 'mainAccord').is(":visible") ){
+						$('#' + t.id + 'infoAccord').show();
+						$('#' + t.id + 'mainAccord').hide();
+						$('#' + t.id + 'getHelpBtn').html('Back to Sample App');
+						t.clicks.updateAccord(t);
+						$('#' + t.id + 'infoAccord .infoDoc').trigger('click');
+					}else{
+						$('#' + t.id + 'infoAccord').hide();
+						$('#' + t.id + 'mainAccord').show();
+						$('#' + t.id + 'getHelpBtn').html('Back to Documentation');
+						t.clicks.updateAccord(t);
+					}			
+				});						
+				// Infographic section clicks
+				$('#' + t.id + ' .infoIcon').on('click',function(c){
+					$('#' + t.id + 'mainAccord').hide();
+					$('#' + t.id + 'infoAccord').show();
+					$('#' + t.id + 'getHelpBtnWrap').show();
+					var ben = c.target.id.split("-").pop();
+					$('#' + t.id + 'getHelpBtn').html('Back to Sample App');
+					t.clicks.updateAccord(t);	
+					$('#' + t.id + 'infoAccord .' + ben).trigger('click');
+				});
+				
 			},
+			eventListeners: function(t){
+				//Natural lands not behind levess slider
+				$('#' + t.id + '-NatNotProt').slider({range:true, min:0, max:100, values:[0,100], 
+						change:function(event,ui){/*ask server for data*/},
+						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
+					})
+				//Agricultural lands not behind levess slider
+				$('#' + t.id + '-AGNotProt').slider({range:true, min:0, max:100, values:[0,100], 
+						change:function(event,ui){/*ask server for data*/},
+						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
+					})
+				//Structural loss slider
+				$('#' + t.id + '-FRStruct_TotLoss').slider({range:true, min:0, max:100, values:[0,100], 
+						change:function(event,ui){/*ask server for data*/},
+						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
+					})
+				//Agricultural loss slider
+				$('#' + t.id + '-AGLoss_7').slider({range:true, min:0, max:100, values:[0,100], 
+						change:function(event,ui){/*ask server for data*/},
+						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
+					})
+				//Agricultural land use behind levess slider
+				$('#' + t.id + '-AGProt').slider({range:true, min:0, max:100, values:[0,100], 
+						change:function(event,ui){/*ask server for data*/},
+						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
+					})
+				//Developed lands behind levess slider
+				$('#' + t.id + '-DevProt').slider({range:true, min:0, max:100, values:[0,100], 
+						change:function(event,ui){/*ask server for data*/},
+						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
+					})
+				//Select Management Action Radio Button Listener
+				$('input[type=radio][name=mng-act]').change(function(c) {
+					$('.mng-act-wrap').slideUp(500,function(){
+						$('.mng-act-toggle').hide();
+						$('.' + c.target.value).show()
+						$('.mng-act-wrap').slideDown(500);		
+					})	
+				})
+				//Select Management Action Toggle Button Listener
+				$('#' + t.id + 'mact-btns input').on('click', function(c){
+					$('.mng-act-wrap').slideUp(500,function(){
+						$('.mng-act-toggle').hide();
+						$('.' + c.target.value).show()
+						$('.mng-act-wrap').slideDown(500);	
+					});	
+				})	
+			},
+			sliderSlide: function(e, ui, t){
+				var sid = e.target.id.split("-").pop();
+				$('#' + t.id + '-' + sid).parent().prev().find('.blueFont').each(function(i,v){
+					$(v).html(ui.values[i])
+				})	
+			},
+			updateAccord: function(t){
+				var ma = $( "#" + t.id + "mainAccord" ).accordion( "option", "active" );
+				var ia = $( "#" + t.id + "infoAccord" ).accordion( "option", "active" );
+				$( "#" + t.id + "mainAccord" ).accordion('destroy');	
+				$( "#" + t.id +  "infoAccord" ).accordion('destroy');	
+				$( "#" + t.id + "mainAccord" ).accordion({heightStyle: "fill"}); 
+				$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});	
+				$( "#" + t.id + "mainAccord" ).accordion( "option", "active", ma );		
+				$( "#" + t.id + "infoAccord" ).accordion( "option", "active", ia );					
+			}
         });
     }
 );
