@@ -11,7 +11,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "UMR Floodplain Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
-		hasCustomPrint: false, size:'custom', width:375,
+		hasCustomPrint: false, size:'small', width:390, 
 		
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
@@ -30,7 +30,9 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 			this.open = "no";
 		},
 		// Called after hibernate at app startup. Calls the render function which builds the plugins elements and functions.   
-		activate: function () {
+		activate: function (showHelpOnStart) {
+			
+			console.log(showHelpOnStart)
 			if (this.rendered == false) {
 				this.rendered = true;							
 				this.render();

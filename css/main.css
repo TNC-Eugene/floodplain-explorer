@@ -1,6 +1,9 @@
 .infoIcon{
 	margin-bottom:-2px; margin-left:3px; cursor:pointer;
 }
+.flex-center{
+	display:flex; align-items:center;
+}
 .flex1{
 	flex:1;
 }
@@ -25,7 +28,12 @@
 .umr-wrap .slider{
 	margin-left:9px;
 }
-
+.umr-first-section .toggle-btn{
+	margin-top:-10px;	
+}
+.under{
+	text-decoration:underline;
+}
 /* fix the accordion height issue in Safari */
 .sidebar-content{
 	height:auto !important;

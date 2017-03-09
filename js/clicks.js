@@ -56,6 +56,11 @@ function ( declare ) {
 						change:function(event,ui){/*ask server for data*/},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
+				//Agricultural lands not behind levess slider
+				$('#' + t.id + '-AGNotProt').slider({range:true, min:0, max:100, values:[0,100], 
+						change:function(event,ui){/*ask server for data*/},
+						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
+					})
 				//Structural loss slider
 				$('#' + t.id + '-FRStruct_TotLoss').slider({range:true, min:0, max:100, values:[0,100], 
 						change:function(event,ui){/*ask server for data*/},
@@ -66,16 +71,36 @@ function ( declare ) {
 						change:function(event,ui){/*ask server for data*/},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
+				//Agricultural land use behind levess slider
+				$('#' + t.id + '-AGProt').slider({range:true, min:0, max:100, values:[0,100], 
+						change:function(event,ui){/*ask server for data*/},
+						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
+					})
+				//Developed lands behind levess slider
+				$('#' + t.id + '-DevProt').slider({range:true, min:0, max:100, values:[0,100], 
+						change:function(event,ui){/*ask server for data*/},
+						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
+					})
 				//Select Management Action Radio Button Listener
 				$('input[type=radio][name=mng-act]').change(function(c) {
-					$('.mng-act-wrap').slideUp(400, function(){
-						$("#" + t.id + c.target.value).slideDown();	
-					});
+					$('.mng-act-wrap').slideUp(500,function(){
+						$('.mng-act-toggle').hide();
+						$('.' + c.target.value).show()
+						$('.mng-act-wrap').slideDown(500);		
+					})	
+				})
+				//Select Management Action Toggle Button Listener
+				$('#' + t.id + 'mact-btns input').on('click', function(c){
+					$('.mng-act-wrap').slideUp(500,function(){
+						$('.mng-act-toggle').hide();
+						$('.' + c.target.value).show()
+						$('.mng-act-wrap').slideDown(500);	
+					});	
 				})	
 			},
 			sliderSlide: function(e, ui, t){
 				var sid = e.target.id.split("-").pop();
-				$('#' + t.id + '-' + sid).parent().prev().find('span').each(function(i,v){
+				$('#' + t.id + '-' + sid).parent().prev().find('.blueFont').each(function(i,v){
 					$(v).html(ui.values[i])
 				})	
 			},
