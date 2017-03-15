@@ -16,6 +16,9 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 				}
 				t.dynamicLayer.on("load", function () { 			
 					t.layersArray = t.dynamicLayer.layerInfos;
+					if (t.obj.stateSet == "no"){
+						t.map.setExtent(t.dynamicLayer.fullExtent.expand(0.6), true)
+					}
 					// Save and Share Handler					
 					if (t.obj.stateSet == "yes"){
 						// set slider values
