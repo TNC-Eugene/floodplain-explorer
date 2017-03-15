@@ -53,17 +53,13 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 		getState: function () {
 			// remove this conditional statement when minimize is added
 			if ( $('#' + this.id ).is(":visible") ){
-				//accordions
-				// if ( $('#' + this.id + 'mainAccord').is(":visible") ){
-				// 	this.obj.accordVisible = 'mainAccord';
-				// 	this.obj.accordHidden = 'infoAccord';
-				// }else{
-				// 	this.obj.accordVisible = 'infoAccord';
-				// 	this.obj.accordHidden = 'mainAccord';
-				// }	
-				// this.obj.accordActive = $('#' + this.id + this.obj.accordVisible).accordion( "option", "active" );
-				// // main button text
-				// this.obj.buttonText = $('#' + this.id + 'getHelpBtn').html();
+				// Checkboxes for radio buttons
+				$.each( $('#' + this.id + 'umr-wrap .rb_cb'),lang.hitch(this,function(i,v){
+					if (v.checked == true){
+						var ids = "-" + v.id.split('-').pop();
+						this.obj.rbCbIds.push(ids)
+					}
+				}));	
 				//extent
 				this.obj.extent = this.map.geographicExtent;
 				this.obj.stateSet = "yes";	

@@ -8,8 +8,6 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 
         return declare(null, {
 			esriApiFunctions: function(t){	
-				// zoom to tracker
-				t.zoomTo = 'no'
 				// Add dynamic map service
 				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.7});
 				t.map.addLayer(t.dynamicLayer);
@@ -25,21 +23,17 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 							$('#' + v.id).trigger('click');	
 						}	
 					});
-
 					// Save and Share Handler					
 					if (t.obj.stateSet == "yes"){
+						// checkboxes for radio buttons
+						$.each(t.obj.rbCbIds,function(i,v){
+							$('#' + t.id + v).trigger('click');
+						})
 						//extent
 						var extent = new Extent(t.obj.extent.xmin, t.obj.extent.ymin, t.obj.extent.xmax, t.obj.extent.ymax, new SpatialReference({ wkid:4326 }))
 						t.map.setExtent(extent, true);
-						// accordion visibility
-						// $('#' + t.id + t.obj.accordVisible).show();
-						// $('#' + t.id + t.obj.accordHidden).hide();
-						// $('#' + t.id + 'getHelpBtn').html(t.obj.buttonText);
-						// //t.clicks.updateAccord(t);
-						// $('#' + t.id + t.obj.accordVisible).accordion( "option", "active", t.obj.accordActive );	
 						t.obj.stateSet = "no";
 					}	
-					t.map.setMapCursor("pointer");
 				});					
 			}
 		});

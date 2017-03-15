@@ -6,7 +6,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 <div id="getHelpBtnWrap" class="getHelpBtnWrap hide">
 	<button id="getHelpBtn" class="button button-default">Start Using Sample App</button>
 </div>
-<div id="mainAccord" class="flex1 umr-wrap" style="padding:0.5em; color: #5d6165;">
+<div id="umr-wrap" class="flex1 umr-wrap" style="padding:0.5em; color: #5d6165;">
 	<section class="umr-first-section">
 		<h3>Identify Floodplain Units</h3>
 		<div id="top-controls">
@@ -34,200 +34,258 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 				<label for="mact-3">Reconnection</label>
 			</div>
 		</div>
-		<!-- <label class="form-component" for="mng-act-c">
-			<input type="radio" id="mng-act-c" name="mng-act" value="cons">
-			<span class="check"></span><span class="form-text">Conservation of existing natural lands</span>
-		</label>
-		<label class="form-component" for="mng-act-rs">
-			<input type="radio" id="mng-act-rs" name="mng-act" value="restor">
-			<span class="check"></span><span class="form-text">Restoration of agricultural lands at risk from flooding</span>
-		</label>
-		<label class="form-component" for="mng-act-rc">
-			<input type="radio" id="mng-act-rc" name="mng-act" value="recon">
-			<span class="check"></span><span class="form-text">Reconnection of lands disconnected by levees</span>
-		</label> -->
-		<section class="hide mng-act-wrap" id="mng-act-wrap">
-			<div class="cons mng-act-toggle">
-				<h3>Conservation of existing natural lands</h3>
-				<h4><span class="fuCount"></span> Floodplain Units Selected By Filters</h4>
-				<h4>Land Use Characteristics</h4>
-				<div class="h10">	
-					<p><span class="under">Natural land not behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">16,800</span> acres</p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-10-NatNotProt" class="slider"></div>
-					</div>
-				</div>
-				<div class="h12">
-					<p><span class="under">Natural land not behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">6,700</span> acres</p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-12-NatNotProt" class="slider"></div>
-					</div>
-				</div>	 
-			</div>
-			<div class="restor mng-act-toggle">
-				<h3>Restoration of agricultural lands at risk from flooding</h3>
-				<h4>Land Use Characteristics</h4>
-				<div class="h10">
-					<p><span class="under">Agricultural land not behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">33,600</span> acres</p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-10-RowAgNotProt" class="slider"></div>
-					</div>
-				</div>
-				<div class="h12">
-					<p><span class="under">Agricultural land not behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">21,200</span> acres</p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-12-RowAgNotProt" class="slider"></div>
-					</div>
-				</div>	
-			</div>
-			<div class="recon mng-act-toggle">
-				<h3>Reconnection of lands disconnected by levees</h3>
-				<h4>Land Use Characteristics</h4>
-				<div class="h10">
-					<p><span class="under">Agricultural land use behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">47,300</span> acres</p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-10-RowAgProt" class="slider"></div>
-					</div>
-				</div>
-				<div class="h12">
-					<p><span class="under">Agricultural land use behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">22,600</span> acres</p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-12-RowAgProt" class="slider"></div>
-					</div>
-				</div>
-				<div class="h10">	
-					<p><span class="under">Developed land behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">29000</span> acres</p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-10-DevProt" class="slider"></div>
-					</div>
-				</div>
-				<div class="h12">	
-					<p><span class="under">Developed land behind levees</span>: <span class="blueFont">0</span> to <span class="blueFont">12300</span> acres</p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-12-DevProt" class="slider"></div>
-					</div>
+	</section>
+	<section class="hide mng-act-wrap" id="mng-act-wrap">
+		<div class="cons mng-act-toggle">
+			<h3>Conservation of existing natural lands</h3>
+			<h4 class="umr-count-font"><span class="fuCount"></span> Floodplain Units Selected By Filters</h4>
+			<h4>Land Use Characteristics</h4>
+			<div class="h10">	
+				<label class="form-component" for="sl-cb1">
+					<input type="checkbox" class="sl-cb" id="sl-cb1" name="sl-cb1"><span class="check"></span>
+					<span class="form-text under">Natural land not behind levees</span>
+				</label>
+				<span class="umr-slider-label">: <span class="blueFont">x</span> to <span class="blueFont">y</span> acres</span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-10-NatNotProt" class="slider"></div>
 				</div>
 			</div>
-			<div class="cons restor recon mng-act-toggle">
-				<h4>Water Quality Benefits</h4>
-				<p class="under">Upland nutrient retention</p>
+			<div class="h12">
+				<label class="form-component" for="sl-cb2">
+					<input type="checkbox" class="sl-cb" id="sl-cb2" name="sl-cb2"><span class="check"></span>
+					<span class="form-text under">Natural land not behind levees</span>
+				</label>
+				<span class="umr-slider-label">: <span class="blueFont">x</span> to <span class="blueFont">y</span> acres</span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-12-NatNotProt" class="slider"></div>
+				</div>
+			</div>	 
+		</div>
+		<div class="restor mng-act-toggle">
+			<h3>Restoration of agricultural lands at risk from flooding</h3>
+			<h4 class="umr-count-font"><span class="fuCount"></span> Floodplain Units Selected By Filters</h4>
+			<h4>Land Use Characteristics</h4>
+			<div class="h10">
+				<label class="form-component" for="sl-cb3">
+					<input type="checkbox" class="sl-cb" id="sl-cb3" name="sl-cb3"><span class="check"></span>
+					<span class="form-text under">Agricultural land not behind levees</span>
+				</label>				
+				<span class="umr-slider-label">: <span class="blueFont">x</span> to <span class="blueFont">y</span> acres</span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-10-RowAgNotProt" class="slider"></div>
+				</div>
+			</div>
+			<div class="h12">
+				<label class="form-component" for="sl-cb4">
+					<input type="checkbox" class="sl-cb" id="sl-cb4" name="sl-cb4"><span class="check"></span>
+					<span class="form-text under">Agricultural land not behind levees</span>
+				</label>
+				<span class="umr-slider-label">: <span class="blueFont">x</span> to <span class="blueFont">y</span> acres</span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-12-RowAgNotProt" class="slider"></div>
+				</div>
+			</div>	
+		</div>
+		<div class="recon mng-act-toggle">
+			<h3>Reconnection of lands disconnected by levees</h3>
+			<h4 class="umr-count-font"><span class="fuCount"></span> Floodplain Units Selected By Filters</h4>
+			<h4>Land Use Characteristics</h4>
+			<div class="h10">
+				<label class="form-component" for="sl-cb5">
+					<input type="checkbox" class="sl-cb" id="sl-cb5" name="sl-cb5"><span class="check"></span>
+					<span class="form-text under">Agricultural land use behind levees</span>
+				</label>
+				<span class="umr-slider-label">: <span class="blueFont">x</span> to <span class="blueFont">y</span> acres</span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-10-RowAgProt" class="slider"></div>
+				</div>
+			</div>
+			<div class="h12">
+				<label class="form-component" for="sl-cb6">
+					<input type="checkbox" class="sl-cb" id="sl-cb6" name="sl-cb6"><span class="check"></span>
+					<span class="form-text under">Agricultural land use behind levees</span>
+				</label>
+				<span class="umr-slider-label">: <span class="blueFont">x</span> to <span class="blueFont">y</span> acres</span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-12-RowAgProt" class="slider"></div>
+				</div>
+			</div>
+			<div class="h10">
+				<label class="form-component" for="sl-cb7">
+					<input type="checkbox" class="sl-cb" id="sl-cb7" name="sl-cb7"><span class="check"></span>
+					<span class="form-text under">Developed land behind levees</span>
+				</label>	
+				<span class="umr-slider-label">: <span class="blueFont">x</span> to <span class="blueFont">y</span> acres</span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-10-DevProt" class="slider"></div>
+				</div>
+			</div>
+			<div class="h12">	
+				<label class="form-component" for="sl-cb8">
+					<input type="checkbox" class="sl-cb" id="sl-cb8" name="sl-cb8"><span class="check"></span>
+					<span class="form-text under">Developed land behind levees</span>
+				</label>
+				<span class="umr-slider-label">: <span class="blueFont">x</span> to <span class="blueFont">y</span> acres</span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-12-DevProt" class="slider"></div>
+				</div>
+			</div>
+		</div>
+		<div class="cons restor recon mng-act-toggle">
+			<h4>Water Quality Benefits</h4>
+			<label class="form-component" for="-rb_cb1">
+					<input type="checkbox" class="rb_cb" id="-rb_cb1" name="-rb_cb1"><span class="check"></span>
+					<span class="form-text under">Upland nutrient retention</span>
+			</label>
+			<div class="umr-radio-indent">
 				<label class="form-component" for="unr-h">
-					<input checked type="radio" id="unr-h" name="unr" value="NDelRet-High">
+					<input checked type="radio" id="unr-h" name="unr" value="NDelRet-High" disabled>
 					<span class="check"></span><span class="form-text">High</span>
 				</label>
 				<label class="form-component" for="unr-m">
-					<input type="radio" id="unr-m" name="unr" value="NDelRet-Medium">
+					<input type="radio" id="unr-m" name="unr" value="NDelRet-Medium" disabled>
 					<span class="check"></span><span class="form-text">Medium</span>
 				</label>
 				<label class="form-component" for="unr-l">
-					<input type="radio" id="unr-l" name="unr" value="NDelRet-Low">
+					<input type="radio" id="unr-l" name="unr" value="NDelRet-Low" disabled>
 					<span class="check"></span><span class="form-text">Low</span>
 				</label>
-				<p class="under">Denitrification Potential</p>
+			</div>
+			<label class="form-component" for="-rb_cb2">
+					<input type="checkbox" class="rb_cb" id="-rb_cb2" name="-rb_cb2"><span class="check"></span>
+					<span class="form-text under">Denitrification Potential</span>
+			</label>
+			<div class="umr-radio-indent">
 				<label class="form-component" for="dn-waa">
-					<input checked type="radio" id="dn-waa" name="dn" value="Denitrification-waa">
+					<input checked type="radio" id="dn-waa" name="dn" value="Denitrification-Well Above Average" disabled>
 					<span class="check"></span><span class="form-text">Well above average</span>
 				</label>
 				<label class="form-component" for="dn-aa">
-					<input type="radio" id="dn-aa" name="dn" value="Denitrification-aa">
+					<input type="radio" id="dn-aa" name="dn" value="Denitrification-Above Average" disabled>
 					<span class="check"></span><span class="form-text">Above average</span>
 				</label>
-				<h4>Flood Related Benefits</h4>
-			</div>		
-			<div class="recon mng-act-toggle">
-				<p class="under">Reconnection Potential</p>
+			</div>	
+			<h4>Flood Related Benefits</h4>
+		</div>		
+		<div class="recon mng-act-toggle">
+			<label class="form-component" for="-rb_cb3">
+					<input type="checkbox" class="rb_cb" id="-rb_cb3" name="-rb_cb3"><span class="check"></span>
+					<span class="form-text under">Reconnection Potential</span>
+			</label>
+			<div class="umr-radio-indent">
 				<label class="form-component" for="rp-h">
-					<input checked type="radio" id="rp-h" name="rp" value="Reconnection-High">
+					<input checked type="radio" id="rp-h" name="rp" value="Reconnection-High" disabled>
 					<span class="check"></span><span class="form-text">High</span>
 				</label>
 				<label class="form-component" for="rp-m">
-					<input type="radio" id="rp-m" name="rp" value="Reconnection-Medium">
+					<input type="radio" id="rp-m" name="rp" value="Reconnection-Medium" disabled>
 					<span class="check"></span><span class="form-text">Medium</span>
 				</label>
 				<label class="form-component" for="rp-l">
-					<input type="radio" id="rp-l" name="rp" value="Reconnection-Low">
+					<input type="radio" id="rp-l" name="rp" value="Reconnection-Low" disabled>
 					<span class="check"></span><span class="form-text">Low</span>
 				</label>
 			</div>	
-			<div class="cons restor recon mng-act-toggle">
-				<div class="h10">
-					<p><span class="under">Structural Losses</span>: $<span class="blueFont">0</span> to $<span class="blueFont">1262656000</span></p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-10-FRStruct_TotLoss" class="slider"></div>
-					</div>
+		</div>	
+		<div class="cons restor recon mng-act-toggle">
+			<div class="h10">
+				<label class="form-component" for="sl-cb9">
+					<input type="checkbox" class="sl-cb" id="sl-cb9" name="sl-cb9"><span class="check"></span>
+					<span class="form-text under">Structural Losses</span>
+				</label>
+				<span class="umr-slider-label">: $<span class="blueFont">x</span> to $<span class="blueFont">y</span></span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-10-FRStruct_TotLoss" class="slider"></div>
 				</div>
-				<div class="h12">
-					<p><span class="under">Structural Losses</span>: $<span class="blueFont">0</span> to $<span class="blueFont">1196649000</span></p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-12-FRStruct_TotLoss" class="slider"></div>
-					</div>
+			</div>
+			<div class="h12">
+				<label class="form-component" for="sl-cb10">
+					<input type="checkbox" class="sl-cb" id="sl-cb10" name="sl-cb10"><span class="check"></span>
+					<span class="form-text under">Structural Losses</span>
+				</label>
+				<span class="umr-slider-label">: $<span class="blueFont">x</span> to $<span class="blueFont">y</span></span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-12-FRStruct_TotLoss" class="slider"></div>
 				</div>
-				<div class="h10">	
-					<p><span class="under">Agricultural Losses</span>: $<span class="blueFont">0</span> to $<span class="blueFont">129913000</span></p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-10-AGLoss_7" class="slider"></div>
-					</div>
-				</div>	
-				<div class="h12">
-					<p><span class="under">Agricultural Losses</span>: $<span class="blueFont">0</span> to $<span class="blueFont">21535000</span></p>
-					<div class="slider-container range-slider" style="width:200px;">
-						<div id="-12-AGLoss_7" class="slider"></div>
-					</div>
-				</div>	
-				<h4>Habitat and Biodiversity Benefits</h4>
+			</div>
+			<div class="h10">
+				<label class="form-component" for="sl-cb11">
+					<input type="checkbox" class="sl-cb" id="sl-cb11" name="sl-cb11"><span class="check"></span>
+					<span class="form-text under">Agricultural Losses</span>
+				</label>	
+				<span class="umr-slider-label">: $<span class="blueFont">x</span> to $<span class="blueFont">y</span></span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-10-AGLoss_7" class="slider"></div>
+				</div>
 			</div>	
-			<div class="cons mng-act-toggle">
-				<p class="under">Existing floodplain forest area</p>
+			<div class="h12">
+				<label class="form-component" for="sl-cb12">
+					<input type="checkbox" class="sl-cb" id="sl-cb12" name="sl-cb12"><span class="check"></span>
+					<span class="form-text under">Agricultural Losses</span>
+				</label>
+				<span class="umr-slider-label">: $<span class="blueFont">x</span> to $<span class="blueFont">y</span></span>
+				<div class="slider-container range-slider" style="width:275px;">
+					<div id="-12-AGLoss_7" class="slider"></div>
+				</div>
+			</div>	
+			<h4>Habitat and Biodiversity Benefits</h4>
+		</div>	
+		<div class="cons mng-act-toggle">
+			<label class="form-component" for="-rb_cb4">
+					<input type="checkbox" class="rb_cb" id="-rb_cb4" name="-rb_cb4"><span class="check"></span>
+					<span class="form-text under">Existing floodplain forest area</span>
+			</label>
+			<div class="umr-radio-indent">
 				<label class="form-component" for="ffa-h">
-					<input checked type="radio" id="ffa-h" name="ffa" value="BF_Existing-High">
+					<input checked type="radio" id="ffa-h" name="ffa" value="BF_Existing-High" disabled>
 					<span class="check"></span><span class="form-text">High</span>
 				</label>
 				<label class="form-component" for="ffa-m">
-					<input type="radio" id="ffa-m" name="ffa" value="BF_Existing-Medium">
+					<input type="radio" id="ffa-m" name="ffa" value="BF_Existing-Medium" disabled>
 					<span class="check"></span><span class="form-text">Medium</span>
 				</label>
 				<label class="form-component" for="ffa-l">
-					<input type="radio" id="ffa-l" name="ffa" value="BF_Existing-Low">
+					<input type="radio" id="ffa-l" name="ffa" value="BF_Existing-Low" disabled>
 					<span class="check"></span><span class="form-text">Low</span>
 				</label>
-			</div>
-			<div class="restor recon mng-act-toggle">
-				<p class="under">Floodplain forest restoration priority</p>
+			</div>	
+		</div>
+		<div class="restor recon mng-act-toggle">
+			<label class="form-component" for="-rb_cb5">
+					<input type="checkbox" class="rb_cb" id="-rb_cb5" name="-rb_cb5"><span class="check"></span>
+					<span class="form-text under">Floodplain forest restoration priority</span>
+			</label>
+			<div class="umr-radio-indent">
 				<label class="form-component" for="frp-h">
-					<input checked type="radio" id="frp-h" name="frp" value="BF_Priority-High">
+					<input checked type="radio" id="frp-h" name="frp" value="BF_Priority-High" disabled>
 					<span class="check"></span><span class="form-text">High</span>
 				</label>
 				<label class="form-component" for="frp-m">
-					<input type="radio" id="frp-m" name="frp" value="BF_Priority-Medium">
+					<input type="radio" id="frp-m" name="frp" value="BF_Priority-Medium" disabled>
 					<span class="check"></span><span class="form-text">Medium</span>
 				</label>
 			</div>
-			<div class="cons restor recon mng-act-toggle">
-				<p class="under">Bird Priority Area</p>
-				<label class="form-component" for="bpa-y">
-					<input type="radio" id="bpa-y" name="bpa" value="SDM-y">
-					<span class="check"></span><span class="form-text">Yes</span>
+		</div>
+		<div class="cons restor recon mng-act-toggle">
+			<label class="form-component" for="-rb_cb6">
+					<input type="checkbox" class="rb_cb" id="-rb_cb6" name="-rb_cb6"><span class="check"></span>
+					<span class="form-text under">Bird species habitat</span>
+			</label>
+			<div class="umr-radio-indent">
+				<label class="form-component" for="bpa-2">
+					<input checked type="radio" id="bpa-2" name="bpa" value="SDM-2" disabled>
+					<span class="check"></span><span class="form-text">2</span>
 				</label>
-				<label class="form-component" for="bpa-n">
-					<input checked type="radio" id="bpa-n" name="bpa" value="SDM-n">
-					<span class="check"></span><span class="form-text">No</span>
+				<label class="form-component" for="bpa-1">
+					<input type="radio" id="bpa-1" name="bpa" value="SDM-1" disabled>
+					<span class="check"></span><span class="form-text">1</span>
 				</label>
-			</div>			
-		</section>
-	</section>	
+				<label class="form-component" for="bpa-0">
+					<input type="radio" id="bpa-0" name="bpa" value="SDM-0" disabled>
+					<span class="check"></span><span class="form-text">0</span>
+				</label>
+			</div>	
+		</div>			
+	</section>
 </div>
 
-<!-- <div id="infoAccord" class="flex1">
-	<h3 class="infoDoc">Documentation</h3>
-	<div class="explainWrap" style="display:block;">
-		<p>
-			This is a new app. It's going to be awesome. It just is.
-		</p> 
-	</div> 
-	<h3 class="moreInfo">More info</h3>
-	<div class="explainWrap">
-		<p>
-			More info to come.
-		</p>
-	</div>
-</div> -->

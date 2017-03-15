@@ -26,7 +26,7 @@
 	margin-bottom:0;
 }
 .umr-wrap .slider{
-	margin-left:9px;
+	margin-left:30px;
 }
 .umr-first-section .toggle-btn{
 	margin-top:-10px;	
@@ -37,4 +37,16 @@
 /* fix the accordion height issue in Safari */
 .sidebar-content{
 	height:auto !important;
+}
+.umr-count-font{
+	color:#2f6384; text-align:center; margin-top:-5px; margin-bottom:-10px;
+}
+.slider-container .ui-state-disabled {
+    cursor: not-allowed !important;
+}
+.umr-slider-label{
+	display:none; margin-left:-8px;
+}
+.umr-radio-indent{
+	margin-left:22px;
 }
