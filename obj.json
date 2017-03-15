@@ -6,7 +6,9 @@
 	"ffDef": "",
 	"huc": "HUC 10",
 	"exp": "",
+	"slIdsVals": [],
 	"slCbIds": [],
+	"rbIds": [],
 	"rbCbIds": [],
 	"extent": "",
 	"stateSet": "no"

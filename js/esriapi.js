@@ -16,15 +16,20 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 				}
 				t.dynamicLayer.on("load", function () { 			
 					t.layersArray = t.dynamicLayer.layerInfos;
-					t.map.setExtent(t.dynamicLayer.fullExtent.expand(0.6), true)
-					// trigger initial top control clicks
-					$.each($('#' + t.id + 'top-controls input'),function(i,v){
-						if (t.obj[v.name] == v.value){
-							$('#' + v.id).trigger('click');	
-						}	
-					});
 					// Save and Share Handler					
 					if (t.obj.stateSet == "yes"){
+						// set slider values
+						$.each(t.obj.slIdsVals,function(i,v){
+							$('#' + t.id + v[0]).slider('values', v[1]);
+						});	
+						// checkboxes for sliders
+						$.each(t.obj.slCbIds,function(i,v){
+							$('#' + t.id + v).trigger('click');
+						})
+						// set radio buttons to checked state
+						$.each(t.obj.rbIds,function(i,v){
+							$('#' + t.id + v).attr('checked', true);
+						})
 						// checkboxes for radio buttons
 						$.each(t.obj.rbCbIds,function(i,v){
 							$('#' + t.id + v).trigger('click');
@@ -34,6 +39,12 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 						t.map.setExtent(extent, true);
 						t.obj.stateSet = "no";
 					}	
+					// trigger initial top control clicks
+					$.each($('#' + t.id + 'top-controls input'),function(i,v){
+						if (t.obj[v.name] == v.value){
+							$('#' + v.id).trigger('click');	
+						}	
+					});
 				});					
 			}
 		});

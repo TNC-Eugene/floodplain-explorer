@@ -81,7 +81,7 @@ function ( declare, Query, QueryTask ) {
 					}	
 				})
 				// Checkboxes for sliders
-				$('#' + t.id + 'umr-wrap .sl-cb').on('click',function(c){
+				$('#' + t.id + 'umr-wrap .-slCb').on('click',function(c){
 					if (c.target.checked == true){
 						$('#' + c.target.id).parent().parent().find('.umr-slider-label').css("display", "inline-block");
 						var sl = $('#' + c.target.id).parent().parent().find('.slider')[0].id 
@@ -182,10 +182,23 @@ function ( declare, Query, QueryTask ) {
 					})
 			},
 			sliderChange: function(e, ui, t){
-				var ben  = e.target.id.split("-").pop()
-				t[ben] = "(" + ben + " >= " + ui.values[0] + " AND " + ben + " <= " + ui.values[1] + ")";	
-				t.clicks.layerDefs(t);
-				t.clicks.sliderSlide(e, ui, t);
+				// slider change was mouse-driven
+				if (e.originalEvent) {
+					var ben  = e.target.id.split("-").pop()
+					t[ben] = "(" + ben + " >= " + ui.values[0] + " AND " + ben + " <= " + ui.values[1] + ")";	
+					t.clicks.layerDefs(t);
+					console.log("mouse click");
+				}
+				//slider change was programmatic
+				else{
+					if (t.obj.stateSet == "no"){
+						var ben  = e.target.id.split("-").pop()
+						t[ben] = "(" + ben + " >= " + ui.values[0] + " AND " + ben + " <= " + ui.values[1] + ")";	
+						t.clicks.layerDefs(t);
+						t.clicks.sliderSlide(e, ui, t);
+						console.log("programmatic", e.target.id);
+					}else{console.log("state set = yes");}
+				}	
 			},
 			sliderSlide: function(e, ui, t){
 				var sid = e.target.id.split("-");
