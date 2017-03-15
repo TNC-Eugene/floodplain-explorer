@@ -127,77 +127,88 @@ function ( declare, Query, QueryTask ) {
 					t.clicks.layerDefs(t);
 				})
 				//Natural lands not behind levess slider
-				$('#' + t.id + '-10-NatNotProt').slider({range:true, min:0, max:16800, values:[0,16800], disabled:true, 
+				$('#' + t.id + '-10-NatNotProt').slider({range:true, min:0, max:8000, values:[0,8000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
-				$('#' + t.id + '-12-NatNotProt').slider({range:true, min:0, max:6700, values:[0,6700], disabled:true,
+				$('#' + t.id + '-12-NatNotProt').slider({range:true, min:0, max:2000, values:[0,2000], disabled:true,
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
 				//Agricultural lands not behind levess slider
-				$('#' + t.id + '-10-RowAgNotProt').slider({range:true, min:0, max:33600, values:[0,33600], disabled:true, 
+				$('#' + t.id + '-10-RowAgNotProt').slider({range:true, min:0, max:10000, values:[0,10000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
-				$('#' + t.id + '-12-RowAgNotProt').slider({range:true, min:0, max:21200, values:[0,21200], disabled:true, 
+				$('#' + t.id + '-12-RowAgNotProt').slider({range:true, min:0, max:2000, values:[0,2000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
 				//Structural loss slider
-				$('#' + t.id + '-10-FRStruct_TotLoss').slider({range:true, min:0, max:1262656000, values:[0,1262656000], disabled:true, 
+				$('#' + t.id + '-10-FRStruct_TotLoss').slider({range:true, min:0, max:10000000, values:[0,10000000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
-				$('#' + t.id + '-12-FRStruct_TotLoss').slider({range:true, min:0, max:1196649000, values:[0,1196649000], disabled:true, 
+				$('#' + t.id + '-12-FRStruct_TotLoss').slider({range:true, min:0, max:10000000, values:[0,10000000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
 				//Agricultural loss slider
-				$('#' + t.id + '-10-AGLoss_7').slider({range:true, min:0, max:129913000, values:[0,129913000], disabled:true, 
+				$('#' + t.id + '-10-AGLoss_7').slider({range:true, min:0, max:20000000, values:[0,20000000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
-				$('#' + t.id + '-12-AGLoss_7').slider({range:true, min:0, max:21535000, values:[0,21535000], disabled:true, 
+				$('#' + t.id + '-12-AGLoss_7').slider({range:true, min:0, max:1000000, values:[0,1000000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
 				//Agricultural land use behind levees slider
-				$('#' + t.id + '-10-RowAgProt').slider({range:true, min:0, max:47300, values:[0,47300], disabled:true, 
+				$('#' + t.id + '-10-RowAgProt').slider({range:true, min:0, max:1000, values:[0,1000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
-				$('#' + t.id + '-12-RowAgProt').slider({range:true, min:0, max:22600, values:[0,22600], disabled:true, 
+				$('#' + t.id + '-12-RowAgProt').slider({range:true, min:0, max:1000, values:[0,1000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
 				//Developed lands behind levess slider
-				$('#' + t.id + '-10-DevProt').slider({range:true, min:0, max:29000, values:[0,29000], disabled:true, 
+				$('#' + t.id + '-10-DevProt').slider({range:true, min:0, max:1000, values:[0,1000], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
-				$('#' + t.id + '-12-DevProt').slider({range:true, min:0, max:12300, values:[0,12300], disabled:true, 
+				$('#' + t.id + '-12-DevProt').slider({range:true, min:0, max:500, values:[0,500], disabled:true, 
 						change:function(event,ui){t.clicks.sliderChange(event,ui,t)},
 						slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)}
 					})
 			},
 			sliderChange: function(e, ui, t){
+				var max = $('#' + e.target.id).slider("option", "max");
+				console.log(max, ui.values[1])
+				var ben  = e.target.id.split("-").pop()
 				// slider change was mouse-driven
 				if (e.originalEvent) {
-					var ben  = e.target.id.split("-").pop()
-					t[ben] = "(" + ben + " >= " + ui.values[0] + " AND " + ben + " <= " + ui.values[1] + ")";	
+					if (max == ui.values[1]){
+						t[ben] = "(" + ben + " >= " + ui.values[0] + ")";
+						$('#' + e.target.id).parent().prev().find('.umr-grth').css('display', 'inline-block');
+					}else{
+						t[ben] = "(" + ben + " >= " + ui.values[0] + " AND " + ben + " <= " + ui.values[1] + ")";	
+						$('#' + e.target.id).parent().prev().find('.umr-grth').css('display', 'none');
+					}
 					t.clicks.layerDefs(t);
-					console.log("mouse click");
 				}
 				//slider change was programmatic
 				else{
 					if (t.obj.stateSet == "no"){
-						var ben  = e.target.id.split("-").pop()
-						t[ben] = "(" + ben + " >= " + ui.values[0] + " AND " + ben + " <= " + ui.values[1] + ")";	
-						t.clicks.layerDefs(t);
+						if (max == ui.values[1]){
+							t[ben] = "(" + ben + " >= " + ui.values[0] + ")";
+							$('#' + e.target.id).parent().prev().find('.umr-grth').css('display', 'inline-block');
+						}else{
+							t[ben] = "(" + ben + " >= " + ui.values[0] + " AND " + ben + " <= " + ui.values[1] + ")";	
+							$('#' + e.target.id).parent().prev().find('.umr-grth').css('display', 'none');
+						}	
 						t.clicks.sliderSlide(e, ui, t);
-						console.log("programmatic", e.target.id);
-					}else{console.log("state set = yes");}
+						t.clicks.layerDefs(t);
+					}
 				}	
 			},
 			sliderSlide: function(e, ui, t){
