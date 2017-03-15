@@ -1,17 +1,17 @@
-// Pull in your favorite version of jquery 
-require({ 
-	packages: [{ name: "jquery", location: "http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/", main: "jquery.min" }] 
-});
+// // Pull in your favorite version of jquery 
+// require({ 
+// 	packages: [{ name: "jquery", location: "http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/", main: "jquery.min" }] 
+// });
 // Bring in dojo and javascript api classes as well as varObject.json, js files, and content.html
 define([
 	"dojo/_base/declare", "framework/PluginBase", "dijit/layout/ContentPane", "dojo/dom", "dojo/dom-style", "dojo/dom-geometry", "dojo/text!./obj.json", 
-	"dojo/text!./html/content.html", './js/jquery-ui-1.11.2/jquery-ui', './js/esriapi', './js/clicks'	
+	"dojo/text!./html/content.html", './js/esriapi', './js/clicks', 'dojo/_base/lang'	
 ],
-function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, content, ui, esriapi, clicks ) {
+function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, content, esriapi, clicks, lang ) {
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "UMR Floodplain Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
-		hasCustomPrint: false, size:'small', width:390, 
+		hasCustomPrint: false, size:'custom', width:400, 
 		
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
@@ -19,7 +19,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 			declare.safeMixin(this, frameworkParameters);
 			// Define object to access global variables from JSON object. Only add variables to varObject.json that are needed by Save and Share. 
 			this.obj = dojo.eval("[" + obj + "]")[0];	
-			this.url = "http://dev.services2.coastalresilience.org:6080/arcgis/rest/services/Water_Blueprint/water_fund1/MapServer";
+			this.url = "http://cirrus-web-adapter-241060755.us-west-1.elb.amazonaws.com/arcgis/rest/services/FN_AGR/umrFloodplain/MapServer";
 			this.layerDefs = [];
 		},
 		// Called after initialize at plugin startup (why the tests for undefined). Also called after deactivate when user closes app by clicking X. 
@@ -32,7 +32,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 		// Called after hibernate at app startup. Calls the render function which builds the plugins elements and functions.   
 		activate: function (showHelpOnStart) {
 			
-			console.log(showHelpOnStart)
+			// console.log(showHelpOnStart)
 			if (this.rendered == false) {
 				this.rendered = true;							
 				this.render();
@@ -53,17 +53,38 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 		getState: function () {
 			// remove this conditional statement when minimize is added
 			if ( $('#' + this.id ).is(":visible") ){
-				//accordions
-				if ( $('#' + this.id + 'mainAccord').is(":visible") ){
-					this.obj.accordVisible = 'mainAccord';
-					this.obj.accordHidden = 'infoAccord';
-				}else{
-					this.obj.accordVisible = 'infoAccord';
-					this.obj.accordHidden = 'mainAccord';
-				}	
-				this.obj.accordActive = $('#' + this.id + this.obj.accordVisible).accordion( "option", "active" );
-				// main button text
-				this.obj.buttonText = $('#' + this.id + 'getHelpBtn').html();
+				// Get slider ids and values when values do not equal min or max
+				$.each($('#' + this.id + 'mng-act-wrap .slider'),lang.hitch(this,function(i,v){
+					var idArray = v.id.split('-');
+					var id = "-" + idArray[1] + "-" + idArray[2];
+					var min = $('#' + v.id).slider("option", "min");
+					var max = $('#' + v.id).slider("option", "max");
+					var values = $('#' + v.id).slider("option", "values");
+					if (min != values[0] || max != values[1]){
+						this.obj.slIdsVals.push([ id, [values[0], values[1]] ])
+					}
+				}));	
+				// Git ids of checked checkboxes above sliders
+				$.each( $('#' + this.id + 'umr-wrap .-slCb'),lang.hitch(this,function(i,v){
+					if (v.checked == true){
+						var id = "-" + v.id.split('-').pop();
+						this.obj.slCbIds.push(id)
+					}
+				}))
+				// Get ids of checked radio buttons
+				$.each( $('#' + this.id + ' .umr-radio-indent input'),lang.hitch(this,function(i,v){
+					if (v.checked == true){
+						var id = "-" + v.id.split('-').pop();
+						this.obj.rbIds.push(id)
+					}
+				}));	
+				// Get ids of checked checkboxes above radio buttons
+				$.each( $('#' + this.id + 'umr-wrap .rb_cb'),lang.hitch(this,function(i,v){
+					if (v.checked == true){
+						var id = "-" + v.id.split('-').pop();
+						this.obj.rbCbIds.push(id)
+					}
+				}));	
 				//extent
 				this.obj.extent = this.map.geographicExtent;
 				this.obj.stateSet = "yes";	
@@ -104,12 +125,14 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 			var idUpdate0 = content.replace(/for="/g, 'for="' + this.id);	
 			var idUpdate = idUpdate0.replace(/id="/g, 'id="' + this.id);
 			$('#' + this.id).html(idUpdate);
+			// Set up variables
+			this.clicks.makeVariables(this);
 			// Click listeners
 			this.clicks.eventListeners(this);
 			// Create ESRI objects and event listeners	
 			this.esriapi.esriApiFunctions(this);
 			
 			this.rendered = true;	
-		},
+		}
 	});
 });

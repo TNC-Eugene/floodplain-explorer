@@ -8,38 +8,44 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 
         return declare(null, {
 			esriApiFunctions: function(t){	
-				// zoom to tracker
-				t.zoomTo = 'no'
 				// Add dynamic map service
-				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.8});
+				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.7});
 				t.map.addLayer(t.dynamicLayer);
 				if (t.obj.visibleLayers.length > 0){	
 					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 				}
 				t.dynamicLayer.on("load", function () { 			
 					t.layersArray = t.dynamicLayer.layerInfos;
-					
 					// Save and Share Handler					
 					if (t.obj.stateSet == "yes"){
+						// set slider values
+						$.each(t.obj.slIdsVals,function(i,v){
+							$('#' + t.id + v[0]).slider('values', v[1]);
+						});	
+						// checkboxes for sliders
+						$.each(t.obj.slCbIds,function(i,v){
+							$('#' + t.id + v).trigger('click');
+						})
+						// set radio buttons to checked state
+						$.each(t.obj.rbIds,function(i,v){
+							$('#' + t.id + v).attr('checked', true);
+						})
+						// checkboxes for radio buttons
+						$.each(t.obj.rbCbIds,function(i,v){
+							$('#' + t.id + v).trigger('click');
+						})
 						//extent
 						var extent = new Extent(t.obj.extent.xmin, t.obj.extent.ymin, t.obj.extent.xmax, t.obj.extent.ymax, new SpatialReference({ wkid:4326 }))
 						t.map.setExtent(extent, true);
-						// accordion visibility
-						$('#' + t.id + t.obj.accordVisible).show();
-						$('#' + t.id + t.obj.accordHidden).hide();
-						$('#' + t.id + 'getHelpBtn').html(t.obj.buttonText);
-						//t.clicks.updateAccord(t);
-						$('#' + t.id + t.obj.accordVisible).accordion( "option", "active", t.obj.accordActive );	
 						t.obj.stateSet = "no";
 					}	
-					t.map.setMapCursor("pointer");
+					// trigger initial top control clicks
+					$.each($('#' + t.id + 'top-controls input'),function(i,v){
+						if (t.obj[v.name] == v.value){
+							$('#' + v.id).trigger('click');	
+						}	
+					});
 				});					
-			},
-			commaSeparateNumber: function(val){
-				while (/(\d+)(\d{3})/.test(val.toString())){
-					val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-				}
-				return val;
 			}
 		});
     }
