@@ -183,7 +183,6 @@ function ( declare, Query, QueryTask ) {
 			},
 			sliderChange: function(e, ui, t){
 				var max = $('#' + e.target.id).slider("option", "max");
-				console.log(max, ui.values[1])
 				var ben  = e.target.id.split("-").pop()
 				// slider change was mouse-driven
 				if (e.originalEvent) {
@@ -208,6 +207,8 @@ function ( declare, Query, QueryTask ) {
 						}	
 						t.clicks.sliderSlide(e, ui, t);
 						t.clicks.layerDefs(t);
+					}else{
+						t.clicks.sliderSlide(e, ui, t);
 					}
 				}	
 			},
