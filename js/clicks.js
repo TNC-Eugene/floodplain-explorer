@@ -6,6 +6,42 @@ function ( declare, Query, QueryTask ) {
 
         return declare(null, {
 			eventListeners: function(t){
+				//info accord
+				$( function() {
+					$( "#" + t.id + "mainAccord" ).accordion({heightStyle: "fill"});
+					$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});
+					$( '#' + t.id + 'infoAccord > div' ).addClass("accord-body");
+					$( '#' + t.id + 'infoAccord > h3' ).addClass("accord-header"); 
+				});
+				// update accordians on window resize
+				var doit;
+				$(window).resize(function(){
+					clearTimeout(doit);
+					doit = setTimeout(function() {
+						t.clicks.updateAccord(t);
+					}, 100);
+				});	
+				// leave help button
+				$('#' + t.id + 'getHelpBtn').on('click', function(c){
+					$('#' + t.id + 'umr-wrap').show()
+					$('#' + t.id + ' .umr-help').hide()
+				})
+				// info icon clicks
+				$('#' + t.id + ' .infoIcon').on('click',function(c){
+					t.showHelp();
+					var ben = c.target.id.split("-").pop();
+					$('#' + t.id + 'getHelpBtn').html('Back to UMR Floodplain Explorer');
+					t.clicks.updateAccord(t);	
+					$('#' + t.id + 'infoAccord .' + ben).trigger('click');
+				});
+				// suppress help on startup click
+				$('#' + t.id + '-shosu').on('click',function(c){
+					if (c.clicked == true){
+						t.app.suppressHelpOnStartup(true);
+					}else{
+						t.app.suppressHelpOnStartup(false);
+					}
+				})
 				var clickCnt = 0;
 				// Flood frequency, HUC, and Management Action clicks
 				$('#' + t.id + 'top-controls input').on('click',function(c){
@@ -278,6 +314,12 @@ function ( declare, Query, QueryTask ) {
 				t.BF_Existing = "";
 				t.BF_Priority = "";
 				t.SDM = "";
+			},
+			updateAccord: function(t){
+				var ia = $( "#" + t.id + "infoAccord" ).accordion( "option", "active" );
+				$( "#" + t.id +  "infoAccord" ).accordion('destroy');	
+				$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});	
+				$( "#" + t.id + "infoAccord" ).accordion( "option", "active", ia );					
 			},
 			commaSeparateNumber: function(val){
 				while (/(\d+)(\d{3})/.test(val.toString())){

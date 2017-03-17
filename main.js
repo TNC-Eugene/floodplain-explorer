@@ -11,7 +11,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "UMR Floodplain Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
-		hasCustomPrint: false, size:'custom', width:420, 
+		hasCustomPrint: false, size:'custom', width:420, hasHelp:true, 
 		
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
@@ -31,8 +31,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 		},
 		// Called after hibernate at app startup. Calls the render function which builds the plugins elements and functions.   
 		activate: function (showHelpOnStart) {
-			
-			// console.log(showHelpOnStart)
 			if (this.rendered == false) {
 				this.rendered = true;							
 				this.render();
@@ -40,7 +38,14 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 			}else{
 				this.dynamicLayer.setVisibleLayers(this.obj.visibleLayers);
 				$('#' + this.id).parent().parent().css('display', 'flex');
-				//this.clicks.updateAccord(this);
+				this.clicks.updateAccord(this);
+			}
+			if (showHelpOnStart) {
+				this.showHelp();
+			}else{
+				$('#' + this.id + '-shosu').attr('checked', true);
+				$('#' + this.id + 'umr-wrap').show()
+				$('#' + this.id + ' .umr-help').hide();
 			}	
 			this.open = "yes";
 		},
@@ -133,6 +138,14 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, obj, conte
 			this.esriapi.esriApiFunctions(this);
 			
 			this.rendered = true;	
+		},
+		showHelp: function(h){
+			$('#' + this.id + 'umr-wrap').hide()
+			$('#' + this.id + ' .umr-help').show()
+			this.clicks.updateAccord(this);			
+				
+			// Show this help on startup anymore, after the first time 
+			// this.app.suppressHelpOnStartup(true);
 		}
 	});
 });
