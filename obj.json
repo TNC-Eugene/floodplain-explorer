@@ -1,15 +1,15 @@
 {
-	"visibleLayers": [0],
+	"visibleLayers": [],
 	"hucLayer": "0",
-	"mngmtAction": "cons",
-	"floodFreq": "1 in 100",
+	"mngmtAction": "p",
+	"floodFreq": "1",
+	"huc": "0",
 	"ffDef": "",
-	"huc": "HUC 10",
 	"exp": "",
 	"slIdsVals": [],
 	"slCbIds": [],
 	"rbIds": [],
 	"rbCbIds": [],
-	"extent": "",
-	"stateSet": "no"
+	"exten0t": "",
+	"stateSet": "no",
 }

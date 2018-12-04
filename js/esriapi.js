@@ -9,11 +9,9 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
         return declare(null, {
 			esriApiFunctions: function(t){	
 				// Add dynamic map service
-				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.7});
-				t.map.addLayer(t.dynamicLayer);
-				if (t.obj.visibleLayers.length > 0){	
-					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
-				}
+				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.5});
+				t.map.addLayer(t.dynamicLayer);	
+				t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 				t.dynamicLayer.on("load", function () { 			
 					t.layersArray = t.dynamicLayer.layerInfos;
 					if (t.obj.stateSet == "no"){
@@ -42,13 +40,27 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 						t.map.setExtent(extent, true);
 						t.obj.stateSet = "no";
 					}	
-					// trigger initial top control clicks
+					// set initial top control checks
 					$.each($('#' + t.id + 'top-controls input'),function(i,v){
 						if (t.obj[v.name] == v.value){
-							$('#' + v.id).trigger('click');	
+							$('#' + v.id).prop('checked', true);	
 						}	
 					});
-				});					
+					// reclick first checked item
+					$.each($('#' + t.id + 'top-controls input'),function(i,v){
+						if (v.checked){
+							$('#' + v.id).trigger("click");
+							return false;
+						}
+					})	
+				});	
+				t.map.on("zoom-end",function(z){
+					if ( t.map.getScale() > 500000){
+						$("#" + t.id + "-catch").prop("disabled", true)
+					}else{
+						$("#" + t.id + "-catch").prop("disabled", false)
+					}
+				})				
 			}
 		});
     }

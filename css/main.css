@@ -7,8 +7,20 @@
 .flex1{
 	flex:1;
 }
+.flex1a{
+	flex:1; text-align:center;
+}
 .flexColumn{
 	display:flex; flex-direction:column;
+}
+.flexSlideWrap{
+	display:flex; min-height:50px; border-bottom:1pt solid #e8f5fe; align-items:end; padding-top:5px;
+}
+.flexSlideWrap .range-slider{
+	margin:0 !important;
+}
+.flexSlideWrap .form-component{
+	margin-bottom:0px;
 }
 .hide{
 	display:none;
@@ -28,15 +40,11 @@
 .umr-wrap .slider{
 	margin-left:30px;
 }
-.umr-first-section .toggle-btn{
-	margin-top:-10px;	
+.umr-wrap h4{
+	margin-bottom:4px;	
 }
-.under{
-	text-decoration:underline;
-}
-/* fix the accordion height issue in Safari */
-.sidebar-content{
-	height:auto !important;
+.mng-act-wrap h4{
+	margin:10px 0 0px 0;
 }
 .umr-count-font{
 	color:#2f6384; text-align:center; margin-top:-5px; margin-bottom:-10px;
@@ -45,14 +53,17 @@
     cursor: not-allowed !important;
 }
 .umr-slider-label{
-	display:none; margin-left:-8px;
+	text-align:center; 
+}
+.rnum{
+	color:#2f6384;
+}
+.label-off{
+	color:#A5CBDD; text-decoration:line-through;
 }
 .umr-radio-indent{
-	margin-left:22px;
+	text-align:center;
 }
-.umr-grth{
-	display:none; color: #2f6384; font-weight: 700;
-}
-.umr-shosu{
-	position:absolute; top:94px; right:3px;
+.toggle-btn input[type=radio]:disabled+label{
+	cursor:not-allowed; opacity:0.5;
 }
