@@ -25,6 +25,10 @@ function ( 	declare ) {
 				// object for range slider
 				t.sliderObj = {
 					h8p1:{
+						popup:[ 
+							{field:"KM2_p1",label:"max area"}, 
+							{field:"cumu_hci",label:"desc"} 
+						],
 						KM2:{values:[],vis:true,min:0,max:980}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
