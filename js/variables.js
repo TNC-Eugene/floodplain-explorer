@@ -29,7 +29,7 @@ function ( 	declare ) {
 							{field:"KM2_p1",label:"max area"}, 
 							{field:"cumu_hci",label:"desc"} 
 						],
-						KM2:{values:[],vis:true,min:0,max:350}, 
+						KM2:{values:[],vis:true,min:0,max:350,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{values:[],vis:true,min:0,max:100}, 
@@ -37,13 +37,13 @@ function ( 	declare ) {
 						CPI:{vis:false}, 
 						WT_TOT:{values:[],vis:true,min:0,max:75,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:150,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:4000,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:250000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:250000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:150,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:4000,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:250000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:250000000,nounsc:true,gtmax:true}
 					},
 					h8p2:{
-						KM2:{values:[],vis:true,min:0,max:350}, 
+						KM2:{values:[],vis:true,min:0,max:350,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -51,13 +51,13 @@ function ( 	declare ) {
 						CPI:{vis:false}, 
 						WT_TOT:{values:[],vis:true,min:0,max:75,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:250,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:8500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:500000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:500000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:250,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:8500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:500000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:500000000,nounsc:true,gtmax:true}
 					},
 					h8p3:{
-						KM2:{values:[],vis:true,min:0,max:350}, 
+						KM2:{values:[],vis:true,min:0,max:350,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -65,13 +65,13 @@ function ( 	declare ) {
 						CPI:{vis:false}, 
 						WT_TOT:{values:[],vis:true,min:0,max:75,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:300,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:10000,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:800000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:800000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:300,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:10000,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:800000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:800000000,nounsc:true,gtmax:true}
 					},
 					h8r1:{
-						KM2:{values:[],vis:true,min:0,max:250}, 
+						KM2:{values:[],vis:true,min:0,max:250,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -79,13 +79,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:75,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:150,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:6000,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:200000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:200000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:150,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:6000,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:200000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:200000000,nounsc:true,gtmax:true}
 					},
 					h8r2:{
-						KM2:{values:[],vis:true,min:0,max:850}, 
+						KM2:{values:[],vis:true,min:0,max:850,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -93,13 +93,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:75,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:350,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:15000,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:700000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:1000000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:350,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:15000,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:700000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:1000000000,nounsc:true,gtmax:true}
 					},
 					h8r3:{
-						KM2:{values:[],vis:true,min:0,max:850}, 
+						KM2:{values:[],vis:true,min:0,max:850,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -107,13 +107,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:75,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:500,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:20000,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:1100000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:1300000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:500,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:20000,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:1100000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:1300000000,nounsc:true,gtmax:true}
 					},
 					h8rr1:{
-						KM2:{values:[],vis:true,min:0,max:200}, 
+						KM2:{values:[],vis:true,min:0,max:200,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -121,13 +121,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:75,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:25,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:3500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:75000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:25,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:3500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:75000000,nounsc:true,gtmax:true}
 					},
 					h8rr2:{
-						KM2:{values:[],vis:true,min:0,max:100}, 
+						KM2:{values:[],vis:true,min:0,max:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -135,13 +135,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:75,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:20,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:2500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:20,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:2500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true}
 					},
 					h8rr3:{
-						KM2:{values:[],vis:true,min:0,max:20}, 
+						KM2:{values:[],vis:true,min:0,max:20,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -149,13 +149,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:75,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:20,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:750,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:25000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:30000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:20,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:750,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:25000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:30000000,nounsc:true,gtmax:true}
 					},
 					h12p1:{
-						KM2:{values:[],vis:true,min:0,max:10}, 
+						KM2:{values:[],vis:true,min:0,max:10,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{values:[],vis:true,min:0,max:100}, 
@@ -163,13 +163,13 @@ function ( 	declare ) {
 						CPI:{vis:false}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:25000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:20000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:25000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:20000000,nounsc:true,gtmax:true}
 					},
 					h12p2:{
-						KM2:{values:[],vis:true,min:0,max:10}, 
+						KM2:{values:[],vis:true,min:0,max:10,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -177,13 +177,13 @@ function ( 	declare ) {
 						CPI:{vis:false}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:1000,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:1000,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true}
 					},
 					h12p3:{
-						KM2:{values:[],vis:true,min:0,max:10}, 
+						KM2:{values:[],vis:true,min:0,max:10,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -191,13 +191,13 @@ function ( 	declare ) {
 						CPI:{vis:false}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:1000,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:1000,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true}
 					},
 					h12r1:{
-						KM2:{values:[],vis:true,min:0,max:10}, 
+						KM2:{values:[],vis:true,min:0,max:10,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -205,13 +205,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10},
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:10000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:20000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:10000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:20000000,nounsc:true,gtmax:true}
 					},
 					h12r2:{
-						KM2:{values:[],vis:true,min:0,max:25}, 
+						KM2:{values:[],vis:true,min:0,max:25,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -219,13 +219,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:25,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:1500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:25,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:1500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true}
 					},
 					h12r3:{
-						KM2:{values:[],vis:true,min:0,max:50}, 
+						KM2:{values:[],vis:true,min:0,max:50,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -233,13 +233,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:25,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:1500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:25,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:1500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:50000000,nounsc:true,gtmax:true}
 					},
 					h12rr1:{
-						KM2:{values:[],vis:true,min:0,max:25}, 
+						KM2:{values:[],vis:true,min:0,max:25,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -247,13 +247,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:5,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:250,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:5,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:250,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true,gtmax:true}
 					},
 					h12rr2:{
-						KM2:{values:[],vis:true,min:0,max:25}, 
+						KM2:{values:[],vis:true,min:0,max:25,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -261,13 +261,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:5,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:250,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:5,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:250,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true,gtmax:true}
 					},
 					h12rr3:{
-						KM2:{values:[],vis:true,min:0,max:10,div:10}, 
+						KM2:{values:[],vis:true,min:0,max:10,div:10,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -275,13 +275,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:5,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:0,max:250,nounsc:true},
-						P2_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:5,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:0,max:250,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:1000000,nounsc:true,gtmax:true}
 					},
 					catchp1:{
-						KM2:{values:[],vis:true,min:10,max:100,div:100}, 
+						KM2:{values:[],vis:true,min:10,max:100,div:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{values:[],vis:true,min:0,max:100}, 
@@ -289,13 +289,13 @@ function ( 	declare ) {
 						CPI:{vis:false}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:1,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true}
+						popnow:{values:[],vis:true,min:1,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true,gtmax:true}
 					},
 					catchp2:{
-						KM2:{values:[],vis:true,min:10,max:100,div:100}, 
+						KM2:{values:[],vis:true,min:10,max:100,div:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -303,13 +303,13 @@ function ( 	declare ) {
 						CPI:{vis:false}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:1,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true}
+						popnow:{values:[],vis:true,min:1,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true,gtmax:true}
 					},
 					catchp3:{
-						KM2:{values:[],vis:true,min:10,max:100,div:100}, 
+						KM2:{values:[],vis:true,min:10,max:100,div:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -317,13 +317,13 @@ function ( 	declare ) {
 						CPI:{vis:false}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:1,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true}
+						popnow:{values:[],vis:true,min:1,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true,gtmax:true}
 					},
 					catchr1:{
-						KM2:{values:[],vis:true,min:10,max:100,div:100}, 
+						KM2:{values:[],vis:true,min:10,max:100,div:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -331,13 +331,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:1,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true}
+						popnow:{values:[],vis:true,min:1,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true,gtmax:true}
 					},
 					catchr2:{
-						KM2:{values:[],vis:true,min:10,max:100,div:100}, 
+						KM2:{values:[],vis:true,min:10,max:100,div:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -345,13 +345,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:1,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true}
+						popnow:{values:[],vis:true,min:1,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true,gtmax:true}
 					},
 					catchr3:{
-						KM2:{values:[],vis:true,min:10,max:100,div:100}, 
+						KM2:{values:[],vis:true,min:10,max:100,div:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -359,13 +359,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:1,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true},
-						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true}
+						popnow:{values:[],vis:true,min:1,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:1,max:500,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true,gtmax:true}
 					},
 					catchrr1:{
-						KM2:{values:[],vis:true,min:10,max:100,div:100}, 
+						KM2:{values:[],vis:true,min:10,max:100,div:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -373,13 +373,13 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:1,max:100,nounsc:true},
-						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:1,max:100,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true,gtmax:true}
 					},
 					catchrr2:{
-						KM2:{values:[],vis:true,min:10,max:100,div:100}, 
+						KM2:{values:[],vis:true,min:10,max:100,div:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, 
@@ -387,23 +387,23 @@ function ( 	declare ) {
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:1,max:100,nounsc:true},
-						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:1,max:100,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true,gtmax:true}
 					},
 					catchrr3:{
-						KM2:{values:[],vis:true,min:10,max:100,div:100}, 
+						KM2:{values:[],vis:true,min:10,max:100,div:100,gtmax:true}, 
 						ACCp:{values:[],vis:true,min:0,max:100}, 
 						DINp:{values:[],vis:true,min:0,max:100}, 
 						GDDsP:{vis:false}, SurAvgP:{vis:false}, 
 						CPI:{values:[],vis:true,min:0,max:10,div:10}, 
 						WT_TOT:{values:[],vis:true,min:0,max:8,shfld:true}, 
 						cumu_hci:{values:[],vis:true,min:0,max:5,shfld:true}, 
-						popnow:{values:[],vis:true,min:0,max:10,nounsc:true}, 
-						pop2050:{values:[],vis:true,min:1,max:100,nounsc:true},
-						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true},
-						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true}
+						popnow:{values:[],vis:true,min:0,max:10,nounsc:true,gtmax:true}, 
+						pop2050:{values:[],vis:true,min:1,max:100,nounsc:true,gtmax:true},
+						P2_2050:{values:[],vis:true,min:10000,max:5000000,nounsc:true,gtmax:true},
+						P5_2050:{values:[],vis:true,min:0,max:5000000,nounsc:true,gtmax:true}
 					}
 				}
 				//console.log(t.sliderObj)				// object for radio groups
